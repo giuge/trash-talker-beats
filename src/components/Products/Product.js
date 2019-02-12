@@ -59,7 +59,7 @@ const ImageContainer = styled.div`
   svg {
     position: absolute;
     top: 17%;
-    left: 17%;
+    left: 15%;
     opacity: 0;
     transition: all 0.5s;
     z-index: 99;
@@ -215,7 +215,7 @@ const Product = props => {
                 <IconContext.Provider
                   value={{
                     size: 32,
-                    color: '#ffffff',
+                    color: '#DCEAF4',
                   }}
                 >
                   <MdPlayArrow />

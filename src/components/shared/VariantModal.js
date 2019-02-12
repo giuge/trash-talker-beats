@@ -41,6 +41,10 @@ const VariantList = styled.ul`
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
+
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+  }
 `
 
 const Variant = styled.li`
@@ -52,6 +56,10 @@ const Variant = styled.li`
   padding: 16px 8px;
   flex-basis: 25%;
   transition: all 0.5s;
+
+  @media (max-width: 700px) {
+    flex: 0 0 45%;
+  }
 
   :hover {
     background: ${props => (props.isSelected ? '#FFAA00' : '#0d2b40')};
