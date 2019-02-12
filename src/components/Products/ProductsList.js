@@ -45,7 +45,7 @@ class ProductsList extends Component {
       <AudioPlayer />
       <List>
         {this.props.products.map(p => (
-          <Product beat={p.node} key={p.node.id} />
+          <Product beat={p} key={p.id} />
         ))}
       </List>
     </Container>

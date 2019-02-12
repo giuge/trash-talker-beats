@@ -78,11 +78,11 @@ const LineItem = ({ context, product, currencySymbol }) => {
 
   const handleChangeVariant = () => {
     const productFromVariant = store.products.find(p =>
-        p.node.shopifyId === product.variant.product.id
+        p.shopifyId === product.variant.product.id
       )
 
       if (!!productFromVariant) {
-        context.interface.selectVariant(productFromVariant.node)
+        context.interface.selectVariant(productFromVariant)
         context.interface.toggleVariantSelectionModal()
       }
   }

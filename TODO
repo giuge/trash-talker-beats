@@ -1,10 +1,10 @@
 - Add tags to product component @done
-- Add track info to select variant modal
+- Add track info to select variant modal @done
 - Implement search functionality
 - Generate legal pages from shopify 
 - Add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
 - Make the product in the product list highlighted if playing it @done
-- Change query from all products to collection (we'll have other collections in the future)
+- Change query from all products to collection (we'll have other collections in the future) @done
 - Make sure you only show files that have a preview
 - Add play icon to product on hover @done
 - responsive design

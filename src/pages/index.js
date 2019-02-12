@@ -5,11 +5,12 @@ import Layout from '../components/Layout/'
 import SEO from '../components/Seo'
 import Products from '../components/Products/'
 
-const allProductsQuery = graphql`
-  query AllProductsQuery {
-    allShopifyProduct {
-      edges {
-        node {
+const allBeatsQuery = graphql`
+{
+  allShopifyCollection(filter: {handle:{eq:"beats"}}) {
+    edges {
+      node {
+        products {
           id
           shopifyId
           title
@@ -36,6 +37,7 @@ const allProductsQuery = graphql`
       }
     }
   }
+}
 `
 
 const IndexPage = props => (
@@ -59,9 +61,11 @@ const IndexPage = props => (
       ]}
     />
     <StaticQuery
-      query={allProductsQuery}
+      query={allBeatsQuery}
       render={data => {
-        const products = data.allShopifyProduct.edges
+        const {products} = data.allShopifyCollection.edges[0].node
+        console.log(data)
+        console.log(products)
         return <Products products={products} />
       }}
     />
