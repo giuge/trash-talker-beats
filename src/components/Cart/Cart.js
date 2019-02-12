@@ -23,6 +23,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `
 
 const Overlay = styled.div`
@@ -74,6 +78,11 @@ const Checkout = styled.a`
   fonr-size: 1.25em;
   font-family: SarabunSemiBold, sans-serif;
   transition: all 0.75s;
+  color: #011523;
+
+  :visited {
+    color: #011523;
+  }
 
   :hover {
     background: #feca30;
