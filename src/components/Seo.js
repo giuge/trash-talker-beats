@@ -70,7 +70,21 @@ function SEO({ description, lang, meta, keywords, title }) {
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  keywords: [],
+  keywords: [
+    `music store`,
+    `instrumentals`,
+    `beats`,
+    `mp3 downloads`,
+    `trash talker`,
+    `trash talker beats`,
+    `producer`,
+    `rap`,
+    `trap`,
+    `hip hop`,
+    `logic`,
+    `fl studio`,
+    `ableton`,
+  ],
 }
 
 SEO.propTypes = {

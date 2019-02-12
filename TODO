@@ -3,8 +3,9 @@
 - Implement search functionality
 - Generate legal pages from shopify 
 - Add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
-- Make the product in the product list highlighted if playing it
+- Make the product in the product list highlighted if playing it @done
 - Change query from all products to collection (we'll have other collections in the future)
 - Make sure you only show files that have a preview
-- Add play icon to product on hover
+- Add play icon to product on hover @done
 - responsive design
+- Add empty cart illustration and don't close when empty
