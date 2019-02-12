@@ -34,10 +34,10 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `trash-talker-beats`,
-        short_name: `starter`,
+        short_name: `trash-talker-beats`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#0D2B40`,
+        theme_color: `#0D2B40`,
         display: `minimal-ui`,
         icon: `src/images/trash_talker_icon.png`, // This path is relative to the root of the site.
       },

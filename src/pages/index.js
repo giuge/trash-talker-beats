@@ -40,7 +40,24 @@ const allProductsQuery = graphql`
 
 const IndexPage = props => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO
+      title="Home"
+      keywords={[
+        `music store`,
+        `instrumentals`,
+        `beats`,
+        `mp3 downloads`,
+        `trash talker`,
+        `trash talker beats`,
+        `producer`,
+        `rap`,
+        `trap`,
+        `hip hop`,
+        `logic`,
+        `fl studio`,
+        `ableton`,
+      ]}
+    />
     <StaticQuery
       query={allProductsQuery}
       render={data => {
