@@ -21,7 +21,6 @@ const ListItem = styled.li`
   color: ${props => (props.highlighted ? '#DCEAF4' : '#DCEAF4')};
   border-bottom: 1px solid #193a50;
 
-
   div > div > div {
     opacity: 0;
   }

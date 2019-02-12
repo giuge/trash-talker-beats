@@ -7,10 +7,16 @@ import { withAllContext } from '../../context/AllContext'
 
 const Container = styled.li`
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  padding: 8px;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 4px;
+
+
 `
 
 const Image = styled.img`
@@ -26,13 +32,16 @@ const Details = styled.div`
 
 const Description = styled.div`
   p {
-    font-family: SarabunSemibold, sans-serif;
+    font-family: SarabunMedium, sans-serif;
     color: #011523;
   }
 
   small {
     font-size: 14px;
     color: #39617d;
+    margin-top: 2px;
+    display: block;
+    opacity: .7;
   }
 `
 
@@ -43,6 +52,7 @@ const Price = styled.div`
     font-family: SarabunMedium, sans-serif;
     line-height: 20px;
     margin-right: 8px;
+    font-size: .85em;
   }
 
   svg {

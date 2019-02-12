@@ -106,8 +106,9 @@ const Total = styled.div`
   align-self: normal;
 
   h4 {
-    font-family: SarabunSemibold, sans-serif;
-    font-size: 1.25em;
+    font-family: SarabunBold, sans-serif;
+    font-size: .85em;
+    text-transform: uppercase;
   }
 
   p {
