@@ -7,3 +7,4 @@
 - Change query from all products to collection (we'll have other collections in the future)
 - Make sure you only show files that have a preview
 - Add play icon to product on hover
+- responsive design

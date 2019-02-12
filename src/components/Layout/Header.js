@@ -14,6 +14,10 @@ const Container = styled.div`
   justify-content: space-between;
   margin-bottom: 40px;
   font-family: SarabunSemiBold, sans-serif;
+
+  @media (max-width: 700px) {
+    padding: 24px 16px;
+  }
 `
 
 const Menu = styled.ul`

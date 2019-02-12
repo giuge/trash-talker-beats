@@ -16,6 +16,10 @@ const Container = styled.div`
   max-width: 960px;
   padding: 0px 40px;
   padding-top: 0;
+
+  @media (max-width: 700px) {
+    padding: 0px 16px;
+  }
 `
 
 const siteTitleQuery = graphql`

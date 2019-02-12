@@ -10,6 +10,10 @@ const Container = styled.footer`
   font-size: 14px;
   opacity: 0.8;
   text-align: center;
+
+  @media (max-width: 700px) {
+    padding: 24px 16px;
+  }
 `
 
 const Logo = styled.img`

@@ -41,7 +41,7 @@ const allProductsQuery = graphql`
 const IndexPage = props => (
   <Layout>
     <SEO
-      title="Home"
+      title="Beats"
       keywords={[
         `music store`,
         `instrumentals`,
