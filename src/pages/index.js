@@ -64,8 +64,7 @@ const IndexPage = props => (
       query={allBeatsQuery}
       render={data => {
         const {products} = data.allShopifyCollection.edges[0].node
-        console.log(data)
-        console.log(products)
+
         return <Products products={products} />
       }}
     />

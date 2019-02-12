@@ -147,8 +147,6 @@ const VariantModal = props => {
     openCart,
   } = context.interface
 
-  console.log(selectingVariantForProuct, 'selectingVariantForProuct')
-
   const addToCart = variant => {
     context.store.addVariantToCart(
       variant.shopifyId,
