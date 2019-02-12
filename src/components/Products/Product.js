@@ -14,24 +14,21 @@ const ListItem = styled.li`
   min-height: 48px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in;
   overflow: hidden;
   cursor: pointer;
-  background: ${props => (props.highlighted ? '#B8CFDF' : 'transparent')};
-  color: ${props => (props.highlighted ? '#011523' : '#DCEAF4')};
-  border-bottom: ${props =>
-    props.highlighted
-      ? '1px solid #39617D'
-      : '1px solid rgba(255, 255, 255, .10)'};
+  background: ${props => (props.highlighted ? '#011523' : 'transparent')};
+  color: ${props => (props.highlighted ? '#DCEAF4' : '#DCEAF4')};
+  border-bottom: 1px solid #193a50;
 
-      div > div > div {
-        opacity: 0;
-      }
+
+  div > div > div {
+    opacity: 0;
+  }
 
   &:hover {
     transition: all 0.1s ease-out;
-    background: ${props => (props.highlighted ? '#B8CFDF' : '#15354C')};
+    background: ${props => (props.highlighted ? '#011523' : '#15354C')};
 
     div > div > div {
       opacity: ${props => (props.highlighted ? '0' : '1')};

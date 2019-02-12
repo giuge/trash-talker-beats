@@ -25,10 +25,10 @@ const Track = styled.div`
   width: ${props => `${props.computedWidth}%`};
   opacity: .6;
   height: 100%;
-  background: #39617d;
   bottom: 0;
   position: absolute;
   transition: width 0.2s;
+  background: #39617d;
 `
 
 const Scrubber = props => {
