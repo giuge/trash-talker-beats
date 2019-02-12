@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Trash Talker Beats`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Listen to and buy the best produced beats.`,
     author: `@giuge`,
   },
   plugins: [

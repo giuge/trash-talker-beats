@@ -57,7 +57,7 @@ const AddToCart = styled.button`
     left: 8px;
   }
 
-  &:hover {
+  &:hover, &:visited {
     transition: all .1s ease-in;
     background: #FFAA00;
     color: #011523;
