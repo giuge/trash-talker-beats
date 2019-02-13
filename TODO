@@ -5,9 +5,9 @@
 - Add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
 - Make the product in the product list highlighted if playing it @done
 - Change query from all products to collection (we'll have other collections in the future) @done
-- Make sure you only show files that have a preview
+- Make sure you only show files that have a preview @done
 - Add play icon to product on hover @done
 - responsive design
 - Add empty cart illustration and don't close when empty
-- make sure you only show files that have 4 variants
-- handle single beat url and show variant modals
+- make sure you only show files that have 4 variants @done
+- handle single beat url and show variant modals @done

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdShoppingCart, MdPlayArrow } from 'react-icons/md'
@@ -68,7 +67,7 @@ const ImageOverlay = styled.div`
   left: 0;
   width: 48px;
   height: 48px;
-  background: rgba(0, 0, 0, .8);
+  background: rgba(0, 0, 0, 0.8);
 `
 
 const Image = styled.img`
@@ -136,30 +135,14 @@ const InCart = styled.button`
   }
 `
 
-const previewQuery = graphql`
-  query {
-    allFile(filter: { sourceInstanceName: { eq: "previews" } }) {
-      edges {
-        node {
-          name
-          extension
-          publicURL
-          modifiedTime
-          prettySize
-        }
-      }
-    }
-  }
-`
-
 const Product = props => {
   const { beat, context } = props
   const image = beat.images[0]
     ? beat.images[0].localFile.childImageSharp.fixed.src
     : null
 
-  const handleClick = track => {
-    context.interface.selectPreview({ ...track, ...beat })
+  const handleClick = () => {
+    context.interface.selectPreview(beat)
   }
 
   const addToCart = e => {
@@ -167,7 +150,6 @@ const Product = props => {
 
     context.interface.selectVariant(beat)
     context.interface.toggleVariantSelectionModal()
-    //return context.store.addVariantToCart(beat.variants[0].shopifyId, 1)
   }
 
   const renderButton = () => {
@@ -190,47 +172,33 @@ const Product = props => {
   const { previewFile } = context.interface
 
   return (
-    <StaticQuery
-      query={previewQuery}
-      render={data => {
-        const beatTitleParts = beat.title.toLowerCase().split(' ')
-        const beatSlug = beatTitleParts.join('_')
-        const preview = data.allFile.edges.filter(t =>
-          t.node.name.includes(beatSlug)
-        )
-        const previewTrack = preview.length > 0 ? preview[0].node : null
-
-        return (
-          <ListItem
-            onClick={() => handleClick(previewTrack)}
-            highlighted={previewFile.id === beat.id}
+    <ListItem
+      onClick={() => handleClick(beat.preview)}
+      highlighted={previewFile.id === beat.id}
+    >
+      <Details>
+        <ImageContainer>
+          <ImageOverlay />
+          <IconContext.Provider
+            value={{
+              size: 32,
+              color: '#DCEAF4',
+            }}
           >
-            <Details>
-              <ImageContainer>
-              <ImageOverlay />
-                <IconContext.Provider
-                  value={{
-                    size: 32,
-                    color: '#DCEAF4',
-                  }}
-                >
-                  <MdPlayArrow />
-                </IconContext.Provider>
+            <MdPlayArrow />
+          </IconContext.Provider>
 
-                <Image src={image} alt={`${beat.title}`} />
-              </ImageContainer>
-              <h3>{beat.title}</h3>
-              <Tags>
-                {beat.tags.map(t => (
-                  <li key={t}>{`#${t}`}</li>
-                ))}
-              </Tags>
-            </Details>
-            {renderButton()}
-          </ListItem>
-        )
-      }}
-    />
+          <Image src={image} alt={`${beat.title}`} />
+        </ImageContainer>
+        <h3>{beat.title}</h3>
+        <Tags>
+          {beat.tags.map(t => (
+            <li key={t}>{`#${t}`}</li>
+          ))}
+        </Tags>
+      </Details>
+      {renderButton()}
+    </ListItem>
   )
 }
 

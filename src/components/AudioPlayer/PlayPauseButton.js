@@ -21,7 +21,7 @@ const PlayPauseButton = props => {
   const { playerStatus, setPlayerStatus, previewFile } = props.context.interface
 
   const renderIcon = () =>
-    playerStatus === 'PLAYING' && !!previewFile.publicURL ? <MdPause /> : <MdPlayArrow />
+    playerStatus === 'PLAYING' && !!previewFile.preview.publicURL ? <MdPause /> : <MdPlayArrow />
 
   return (
     <Container

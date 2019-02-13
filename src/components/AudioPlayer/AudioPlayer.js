@@ -57,7 +57,7 @@ class AudioPlayer extends Component  {
         </div>
         <div>
           <Sound
-            url={previewFile.publicURL || ''}
+            url={previewFile.preview ? previewFile.preview.publicURL : ''}
             loop={true}
             playStatus={playerStatus}
             volume={playerVolume}
