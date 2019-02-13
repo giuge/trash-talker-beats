@@ -9,3 +9,5 @@
 - Add play icon to product on hover @done
 - responsive design
 - Add empty cart illustration and don't close when empty
+- make sure you only show files that have 4 variants
+- handle single beat url and show variant modals

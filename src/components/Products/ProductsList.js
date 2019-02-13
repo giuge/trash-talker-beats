@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import Product from './Product'
+import { navigate } from '@reach/router'
 import styled from 'styled-components'
 
-import { withStoreContext } from '../../context/StoreContext'
+import { withAllContext } from '../../context/AllContext'
+import Product from './Product'
 import AudioPlayer from '../AudioPlayer/'
 
 const Container = styled.div`
@@ -35,8 +36,27 @@ const List = styled.ul`
 
 class ProductsList extends Component {
   componentDidMount() {
-    const {context, products} = this.props
+    const {context, products, location} = this.props
+    const {hash} = location 
     context.store.updateProducts(products)
+
+    
+    console.log(location)
+
+    if(!!hash) {
+      const selectedBeat = products.filter(b => b.handle === hash.substr(1))[0]
+
+      if(Object.keys(selectedBeat).length !== 0) {
+        console.log(`Found product "${selectedBeat.title}"`)
+        context.interface.selectVariant(selectedBeat)
+        context.interface.toggleVariantSelectionModal()
+
+        navigate('/')
+
+        console.log(location)
+        // Open modal with this product then
+      }
+    }
   }
 
   render() {
@@ -53,4 +73,4 @@ class ProductsList extends Component {
   }
 }
 
-export default withStoreContext(ProductsList)
+export default withAllContext(ProductsList)

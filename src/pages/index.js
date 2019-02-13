@@ -16,6 +16,7 @@ const allBeatsQuery = graphql`
           title
           tags
           description
+          handle
           images {
             localFile {
               childImageSharp {
@@ -65,7 +66,7 @@ const IndexPage = props => (
       render={data => {
         const {products} = data.allShopifyCollection.edges[0].node
 
-        return <Products products={products} />
+        return <Products products={products}  {...props} />
       }}
     />
   </Layout>
