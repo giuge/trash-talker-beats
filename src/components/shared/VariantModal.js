@@ -78,9 +78,17 @@ const VariantTitle = styled.small`
   letter-spacing: 1px;
 `
 
+const VariantDescription = styled.p`
+  font-family: SarabunMedium, sans-serif;
+  font-size: 0.85em;
+  margin: 16px 0 0 0;
+  text-transform: uppercase;
+  opacity: 0.7;
+`
+
 const VariantPrice = styled.h3`
   font-family: SarabunBold, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.8em;
   margin-top: 0.5em;
 `
 
@@ -203,6 +211,17 @@ const VariantModal = props => {
       return (
         <VariantList>
           {selectingVariantForProuct.variants.map((v, i) => {
+            let description = 'No description available'
+            const title = v.title.toLowerCase()
+
+            if(title.includes('basic')) {
+              description = 'MP3'
+            } else if(title.includes('standard')) {
+              description = 'MP3 AND WAV'
+            } else if (title.includes('premium') || title.includes('unlimited')) {
+              description = 'MP3, WAV AND TRACK STEMS'
+            }
+
             return (
               <Variant
                 onClick={e => addToCart(v)}
@@ -211,6 +230,7 @@ const VariantModal = props => {
               >
                 <VariantTitle>{v.title}</VariantTitle>
                 <VariantPrice>{v.price}</VariantPrice>
+                <VariantDescription>{description}</VariantDescription>
               </Variant>
             )
           })}
