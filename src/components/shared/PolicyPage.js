@@ -9,7 +9,7 @@ const Title = styled.h2`
   margin-bottom: 1.5em;
 `
 
-const Body = styled.div`
+const Content = styled.div`
   font-size: 1em;
   text-align: left;
   line-height: 1.5em;
@@ -30,20 +30,19 @@ const TextTitle = styled.h4`
 `
 
 const PolicyPage = ({ pageContext }) => {
-  console.log(pageContext)
-  const paragraphs = pageContext.page.body.split('\n').filter(p => p !== '')
+  const paragraphs = pageContext.body.split('\n').filter(p => p !== '')
 
   return (
     <Layout>
-      <Title>{pageContext.page.title}</Title>
-      <Body>
+      <Title>{pageContext.title}</Title>
+      <Content>
         {paragraphs.map((p, i) => {
           if (p.toUpperCase() === p) {
             return <TextTitle key={i}>{p}</TextTitle>
           }
           return <Text key={i}>{p}</Text>
         })}
-      </Body>
+      </Content>
     </Layout>
   )
 }

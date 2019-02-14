@@ -4,7 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
 const path = require('path')
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -33,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: `/${handle}`,
         component: path.resolve('./src/components/shared/PolicyPage.js'),
         context: {
-          page: edge.node,
+         ...edge.node,
         },
       })
     }
