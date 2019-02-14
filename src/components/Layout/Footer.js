@@ -1,5 +1,5 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 const Container = styled.footer`
@@ -8,8 +8,11 @@ const Container = styled.footer`
   padding: 24px 40px;
   font-family: SarabunLight, sans-serif;
   font-size: 14px;
-  opacity: 0.8;
   text-align: center;
+
+  a:hover {
+    color: #ffaa00;
+  }
 
   @media (max-width: 700px) {
     padding: 24px 16px;
@@ -17,9 +20,24 @@ const Container = styled.footer`
 `
 
 const Logo = styled.img`
-  opacity: .4;
+  opacity: 0.4;
   display: block;
   margin: 0 auto 24px auto;
+`
+
+const Menu = styled.ul`
+  margin: 1em 0 2em 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin: 0 0.5em;
+  }
+`
+
+const Copyright = styled.p`
+  margin: 1em 0 2em 0;
+  opacity: 0.5;
 `
 
 const LogoQuery = graphql`
@@ -38,8 +56,18 @@ const Footer = props => {
       query={LogoQuery}
       render={data => (
         <Container>
-          <Logo src={data.file.publicURL} alt="" />
-          <p>
+          <Link to="/">
+            <Logo src={data.file.publicURL} alt="" />
+          </Link>
+          <Menu>
+            <li>
+              <Link to="/terms-of-service">Terms of Service</Link>
+            </li>
+            <li>
+              <Link to="/privacy-policy">Privacy Policy</Link>
+            </li>
+          </Menu>
+          <Copyright>
             © {new Date().getFullYear()} - Made with love by
             {` `}
             <a
@@ -49,7 +77,7 @@ const Footer = props => {
             >
               Andshape
             </a>
-          </p>
+          </Copyright>
         </Container>
       )}
     />
