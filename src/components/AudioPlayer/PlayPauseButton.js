@@ -11,7 +11,7 @@ const Container = styled.div`
   width: 48px;
   height: 48px;
   text-align: center;
-  background: #39617D;
+  background: #39617d;
   border-radius: 100px;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -21,19 +21,26 @@ const PlayPauseButton = props => {
   const { playerStatus, setPlayerStatus, previewFile } = props.context.interface
 
   const renderIcon = () =>
-    playerStatus === 'PLAYING' && !!previewFile.preview.publicURL ? <MdPause /> : <MdPlayArrow />
+    playerStatus === 'PLAYING' &&
+    !!previewFile.preview &&
+    !!previewFile.preview.publicURL ? (
+      <MdPause />
+    ) : (
+      <MdPlayArrow />
+    )
 
   const handleClick = () => {
-    if(props.onClick && {}.toString.call(props.onClick) === '[object Function]') {
+    if (
+      props.onClick &&
+      {}.toString.call(props.onClick) === '[object Function]'
+    ) {
       props.onClick()
     }
     setPlayerStatus(playerStatus === 'PLAYING' ? 'PAUSED' : 'PLAYING')
   }
 
   return (
-    <Container
-      onClick={() => handleClick()}
-    >
+    <Container onClick={() => handleClick()}>
       <IconContext.Provider
         value={{
           size: 32,

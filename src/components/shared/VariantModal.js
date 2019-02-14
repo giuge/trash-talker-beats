@@ -125,7 +125,7 @@ const TrackInfo = styled.div`
     top: 35%;
     left: 5.5%;
     opacity: 0;
-    transition: all .75s;
+    transition: all 0.75s;
   }
 
   &:hover {
@@ -175,7 +175,7 @@ const VariantModal = props => {
     toggleVariantSelectionModal,
     selectVariant,
     openCart,
-    selectPreview
+    selectPreview,
   } = context.interface
 
   const addToCart = variant => {
@@ -189,8 +189,13 @@ const VariantModal = props => {
   }
 
   const closeModal = () => {
-    selectVariant()
     toggleVariantSelectionModal()
+
+    // Give a bit of time before resetting the variant or you get a weird animation when closing.
+    // The timeout has the same duration of the modal fade out animation
+    setTimeout(() => {
+      selectVariant()
+    }, 500)
   }
 
   const isSelectedVariant = variant => {
@@ -214,11 +219,14 @@ const VariantModal = props => {
             let description = 'No description available'
             const title = v.title.toLowerCase()
 
-            if(title.includes('basic')) {
+            if (title.includes('basic')) {
               description = 'MP3'
-            } else if(title.includes('standard')) {
+            } else if (title.includes('standard')) {
               description = 'MP3 AND WAV'
-            } else if (title.includes('premium') || title.includes('unlimited')) {
+            } else if (
+              title.includes('premium') ||
+              title.includes('unlimited')
+            ) {
               description = 'MP3, WAV AND TRACK STEMS'
             }
 
@@ -257,7 +265,9 @@ const VariantModal = props => {
           </IconContext.Provider>
         </Close>
         <TrackInfo>
-        <PlayPauseButton  onClick={() => selectPreview(selectingVariantForProuct)} />
+          <PlayPauseButton
+            onClick={() => selectPreview(selectingVariantForProuct)}
+          />
           <img
             src={
               !!selectingVariantForProuct.images
