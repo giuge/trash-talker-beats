@@ -10,6 +10,11 @@ const Container = styled.footer`
   font-size: 14px;
   text-align: center;
 
+  a, a:visited, a:active {
+    color: #DCEAF4;
+    transition: all .5s;
+  }
+
   a:hover {
     color: #ffaa00;
   }
@@ -50,7 +55,7 @@ const LogoQuery = graphql`
   }
 `
 
-const Footer = props => {
+const Footer = () => {
   return (
     <StaticQuery
       query={LogoQuery}
