@@ -23,11 +23,16 @@ const PlayPauseButton = props => {
   const renderIcon = () =>
     playerStatus === 'PLAYING' && !!previewFile.preview.publicURL ? <MdPause /> : <MdPlayArrow />
 
+  const handleClick = () => {
+    if(props.onClick && {}.toString.call(props.onClick) === '[object Function]') {
+      props.onClick()
+    }
+    setPlayerStatus(playerStatus === 'PLAYING' ? 'PAUSED' : 'PLAYING')
+  }
+
   return (
     <Container
-      onClick={() =>
-        setPlayerStatus(playerStatus === 'PLAYING' ? 'PAUSED' : 'PLAYING')
-      }
+      onClick={() => handleClick()}
     >
       <IconContext.Provider
         value={{

@@ -1,13 +1,16 @@
-- Add tags to product component @done
-- Add track info to select variant modal @done
-- Implement search functionality
-- Generate legal pages from shopify 
-- Add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
-- Make the product in the product list highlighted if playing it @done
-- Change query from all products to collection (we'll have other collections in the future) @done
-- Make sure you only show files that have a preview @done
-- Add play icon to product on hover @done
-- responsive design
-- Add empty cart illustration and don't close when empty
-- make sure you only show files that have 4 variants @done
+- add tags to product component @done
+- add track info to select variant modal @done
 - handle single beat url and show variant modals @done
+- make the product in the product list highlighted if playing it @done
+- change query from all products to collection (we'll have other collections in the future) @done
+- add play icon to product on hover @done
+- make sure you only show files that have a preview @done
+- make sure you only show files that have 4 variants @done
+- implement search functionality
+- generate legal pages from shopify 
+- add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
+- responsive design
+- add empty cart illustration and don't close when empty
+- add ability to preview audio from variant modal (just play pause)
+- maybe add a single page for every beat
+- add background waveform

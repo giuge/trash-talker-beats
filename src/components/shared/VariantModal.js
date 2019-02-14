@@ -4,6 +4,7 @@ import { MdClose } from 'react-icons/md'
 import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
+import PlayPauseButton from '../AudioPlayer/PlayPauseButton'
 
 const Container = styled.div`
   visibility: ${props => (props.status === 'open' ? 'visible' : 'hidden')};
@@ -94,6 +95,7 @@ const Close = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  z-index: 100;
 `
 
 const TrackInfo = styled.div`
@@ -103,6 +105,26 @@ const TrackInfo = styled.div`
   padding: 32px 40px;
   background: #b8cfdf;
   display: flex;
+  position: relative;
+
+  ::selection {
+    background: none;
+    color: inherit;
+  }
+
+  & > div:first-child {
+    position: absolute;
+    top: 35%;
+    left: 5.5%;
+    opacity: 0;
+    transition: all .75s;
+  }
+
+  &:hover {
+    & > div:first-child {
+      opacity: 1;
+    }
+  }
 
   img {
     height: 120px;
@@ -145,6 +167,7 @@ const VariantModal = props => {
     toggleVariantSelectionModal,
     selectVariant,
     openCart,
+    selectPreview
   } = context.interface
 
   const addToCart = variant => {
@@ -171,17 +194,20 @@ const VariantModal = props => {
     return false
   }
 
+  const handleAudioPreview = () => {
+    selectPreview(selectingVariantForProuct)
+  }
+
   const renderVariants = () => {
     if (variantSelectionModalStatus === 'open') {
       return (
         <VariantList>
           {selectingVariantForProuct.variants.map((v, i) => {
-            const selected = isSelectedVariant(v)
             return (
               <Variant
                 onClick={e => addToCart(v)}
                 key={i}
-                isSelected={selected}
+                isSelected={isSelectedVariant(v)}
               >
                 <VariantTitle>{v.title}</VariantTitle>
                 <VariantPrice>{v.price}</VariantPrice>
@@ -211,6 +237,7 @@ const VariantModal = props => {
           </IconContext.Provider>
         </Close>
         <TrackInfo>
+        <PlayPauseButton  onClick={() => selectPreview(selectingVariantForProuct)} />
           <img
             src={
               !!selectingVariantForProuct.images
@@ -219,6 +246,7 @@ const VariantModal = props => {
                 : ''
             }
             alt={selectingVariantForProuct.title}
+            onClick={() => handleAudioPreview()}
           />
           <div>
             <h2>{selectingVariantForProuct.title}</h2>
