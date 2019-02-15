@@ -49,10 +49,10 @@ class AudioPlayer extends Component  {
     const currentFile = this.props.context.interface.previewFile
 
     if(prevFile.url !== currentFile.url) {
-      this.setState({
-        position: {},
+      this.setState(state => ({
+        ...state,
         seekPosition: 0
-      })
+      }))
     }
   }  
 
