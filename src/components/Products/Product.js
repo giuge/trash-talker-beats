@@ -152,6 +152,11 @@ const Product = props => {
     context.interface.toggleVariantSelectionModal()
   }
 
+  const handleTagClick = (e, t) => {
+    e.stopPropagation()
+    context.store.search.addTag(t)
+  }
+
   const renderButton = () => {
     if (context.store.isProductInCart(beat.shopifyId)) {
       return (
@@ -193,7 +198,7 @@ const Product = props => {
         <h3>{beat.title}</h3>
         <Tags>
           {beat.tags.map(t => (
-            <li key={t}>{`#${t}`}</li>
+            <li key={t} onClick={e => handleTagClick(e, t)}>{`#${t}`}</li>
           ))}
         </Tags>
       </Details>

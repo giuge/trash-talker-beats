@@ -26,6 +26,7 @@
     "react-icons": "^3.3.0",
     "react-measure": "^2.2.4",
     "react-sound": "^1.2.0",
+    "react-tag-autocomplete": "^5.8.0",
     "shopify-buy": "^2.0.1",
     "styled-components": "^4.1.3"
   },

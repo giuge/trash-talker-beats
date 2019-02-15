@@ -6,7 +6,7 @@
 - add play icon to product on hover @done
 - make sure you only show files that have a preview @done
 - make sure you only show files that have 4 variants @done
-- implement search functionality
+- implement search functionality @done
 - generate legal pages from shopify @done
 - add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
 - responsive design

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
 import Product from './Product'
+import SearchInput from './SearchInput'
 import AudioPlayer from '../AudioPlayer/'
 
 const Container = styled.div`
@@ -38,9 +39,12 @@ const List = styled.ul`
 class ProductsList extends Component {
   componentDidMount() {
     const { context, products, location } = this.props
+    const { search } = context.store
     const { hash } = location
 
     context.store.updateProducts(products)
+    search.updateSuggestions()
+    search.filterProducts()
 
     if (!!hash) {
       const selectedBeat = products.find(b => b.handle === hash.substr(1))
@@ -54,12 +58,27 @@ class ProductsList extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { context } = this.props
+    const { search } = context.store
+
+    if(prevProps.context.store.search.tags.length !== context.store.search.tags.length) {
+      search.filterProducts()
+    }    
+  }
+
   render() {
+    const { context } = this.props
+    const { products } = context.store
+    const { filteredProducts } = context.store.search
+    const productsToUse = filteredProducts.length !== 0 ? filteredProducts : products
+    
     return (
       <Container>
+        <SearchInput />
         <AudioPlayer />
         <List>
-          {this.props.products.map(p => (
+          {productsToUse.map(p => (
             <Product beat={p} key={p.id} />
           ))}
         </List>

@@ -17,11 +17,14 @@ export default class StoreContextProvider extends Component {
     this.updateLineItem = this.updateLineItem.bind(this)
     this.updateProducts = this.updateProducts.bind(this)
     this.isProductInCart = this.isProductInCart.bind(this)
+    this.addTag = this.addTag.bind(this)
+    this.removeTag = this.removeTag.bind(this)
+    this.updateSuggestions = this.updateSuggestions.bind(this)
+    this.filterProducts = this.filterProducts.bind(this)
 
     this.state = {
       store: {
         client,
-        isCartOpen: false,
         adding: false,
         checkout: { lineItems: [] },
         products: [],
@@ -30,7 +33,16 @@ export default class StoreContextProvider extends Component {
         removeLineItem: this.removeLineItem,
         updateLineItem: this.updateLineItem,
         updateProducts: this.updateProducts,
-        isProductInCart: this.isProductInCart
+        isProductInCart: this.isProductInCart,
+        search: {
+          tags: [],
+          suggestions: [],
+          filteredProducts: [],
+          updateSuggestions: this.updateSuggestions,
+          addTag: this.addTag,
+          removeTag: this.removeTag,
+          filterProducts: this.filterProducts,
+        },
       },
     }
   }
@@ -39,7 +51,7 @@ export default class StoreContextProvider extends Component {
     this.setState(state => ({
       store: {
         ...state.store,
-        products
+        products,
       },
     }))
   }
@@ -183,6 +195,103 @@ export default class StoreContextProvider extends Component {
 
     const newCheckout = await createNewCheckout()
     setCheckoutInState(newCheckout)
+  }
+
+  addTag(tag) {
+    this.setState(state => {
+      const { tags } = state.store.search
+
+      const newTag =
+        typeof tag === 'string' ? { id: tags.length + 1, name: tag } : tag
+
+      const isTagPresent = !!tags.find(t => t.name === newTag.name)
+
+      return {
+        store: {
+          ...state.store,
+          search: {
+            ...state.store.search,
+            tags: !isTagPresent ? [].concat(tags, newTag) : tags,
+          },
+        },
+      }
+    })
+    this.filterProducts()
+  }
+
+  removeTag(index) {
+    this.setState(state => {
+      const tags = state.store.search.tags.slice(0)
+      tags.splice(index, 1)
+
+      return {
+        store: {
+          ...state.store,
+          search: {
+            ...state.store.search,
+            tags,
+          },
+        },
+      }
+    })
+    this.filterProducts()
+  }
+
+  updateSuggestions() {
+    this.setState(state => {
+      const suggestions = state.store.products.reduce((acc, p) => {
+        const tagsToPush = p.tags.filter(t => acc.indexOf(t) === -1)
+        for (const tag of tagsToPush) {
+          acc.push({ id: acc.length + 1, name: tag.toLowerCase() })
+        }
+        return acc
+      }, [])
+
+      return {
+        store: {
+          ...state.store,
+          search: {
+            ...state.store.search,
+            suggestions,
+          },
+        },
+      }
+    })
+  }
+
+  filterProducts() {
+    this.setState(state => {
+      if (
+        state.store.products.length === 0 ||
+        state.store.search.tags.length === 0
+      ) {
+        return {
+          store: {
+            ...state.store,
+            search: {
+              ...state.store.search,
+              filteredProducts: [],
+            },
+          },
+        }
+      }
+
+      const tagList = state.store.search.tags.map(t => t.name)
+      const filteredProducts = state.store.products.filter(p => {
+        const filteredTags = p.tags.filter(t => tagList.indexOf(t) !== -1)
+        return filteredTags.length !== 0
+      })
+
+      return {
+        store: {
+          ...state.store,
+          search: {
+            ...state.store.search,
+            filteredProducts,
+          },
+        },
+      }
+    })
   }
 
   componentDidMount() {
