@@ -142,6 +142,7 @@ const Product = props => {
     : null
 
   const handleClick = () => {
+    context.interface.stopPlayer()
     context.interface.selectPreview(beat)
   }
 
@@ -149,7 +150,6 @@ const Product = props => {
     e.stopPropagation()
 
     context.interface.selectVariant(beat)
-    context.interface.toggleVariantSelectionModal()
   }
 
   const handleTagClick = (e, t) => {
