@@ -44,6 +44,18 @@ class AudioPlayer extends Component  {
     }))
   }
 
+  componentDidUpdate(prevProps) {
+    const prevFile = prevProps.context.interface.previewFile
+    const currentFile = this.props.context.interface.previewFile
+
+    if(prevFile.url !== currentFile.url) {
+      this.setState({
+        position: {},
+        seekPosition: 0
+      })
+    }
+  }  
+
   render() {
     const { previewFile, playerStatus, playerVolume } = this.props.context.interface
 
