@@ -142,13 +142,11 @@ const Product = props => {
     : null
 
   const handleClick = () => {
-    context.interface.stopPlayer()
     context.interface.selectPreview(beat)
   }
 
   const addToCart = e => {
     e.stopPropagation()
-
     context.interface.selectVariant(beat)
   }
 

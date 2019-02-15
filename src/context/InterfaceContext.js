@@ -120,6 +120,7 @@ export default class InterfaceContextProvider extends Component {
   }
 
   selectPreview(previewFile) {
+    this.stopPlayer()
     this.setState(state => ({
       interface: {
         ...state.interface,
