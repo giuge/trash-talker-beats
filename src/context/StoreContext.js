@@ -279,8 +279,12 @@ export default class StoreContextProvider extends Component {
       const tagList = state.store.search.tags.map(t => t.name)
       const filteredProducts = state.store.products.filter(p => {
         const filteredTags = p.tags.filter(t => tagList.indexOf(t) !== -1)
-        return filteredTags.length !== 0
+        console.log(filteredTags, 'filteredTags')
+        return filteredTags.length === tagList.length
       })
+
+      console.log(tagList, 'tagList')
+      console.log(filteredProducts, 'filteredProducts')
 
       return {
         store: {

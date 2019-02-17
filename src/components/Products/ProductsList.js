@@ -36,6 +36,18 @@ const List = styled.ul`
   }
 `
 
+const EmptyText = styled.p`
+  width: 100%;
+  text-align: center;
+  padding: 24px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: #87ADC8;
+  line-height: 140%;
+`
+
 class ProductsList extends Component {
   componentDidMount() {
     const { context, products, location } = this.props
@@ -67,20 +79,34 @@ class ProductsList extends Component {
     }    
   }
 
-  render() {
+  renderProducts() {
     const { context } = this.props
     const { products } = context.store
-    const { filteredProducts } = context.store.search
-    const productsToUse = filteredProducts.length !== 0 ? filteredProducts : products
-    
+    const { filteredProducts, tags } = context.store.search
+    const productsToUse = tags.length !== 0 ? filteredProducts : products
+
+    if(tags.length === 0) {
+      if(products.length === 0) {
+        return <EmptyText>No products in store</EmptyText>
+      }
+    } else {
+      if(filteredProducts.length === 0) {
+        return <EmptyText>No product matches your criteria</EmptyText>
+      }
+    }
+
+    return productsToUse.map(p => (
+      <Product beat={p} key={p.id} />
+    ))
+  }
+
+  render() {   
     return (
       <Container>
         <SearchInput />
         <AudioPlayer />
         <List>
-          {productsToUse.map(p => (
-            <Product beat={p} key={p.id} />
-          ))}
+          {this.renderProducts()}
         </List>
       </Container>
     )
