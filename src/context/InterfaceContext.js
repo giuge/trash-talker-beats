@@ -87,7 +87,8 @@ export default class InterfaceContextProvider extends Component {
     this.setState(state => ({
       interface: {
         ...state.interface,
-        selectingVariantForProuct: product || {}
+        selectingVariantForProuct: product || {},
+        variantSelectionModalStatus: !!product ? 'open' : 'closed'
       },
     }))
   }
