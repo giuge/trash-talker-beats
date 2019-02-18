@@ -4,7 +4,6 @@ import { MdClose } from 'react-icons/md'
 import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
-import PlayPauseButton from '../AudioPlayer/PlayPauseButton'
 
 const Container = styled.div`
   visibility: ${props => (props.status === 'open' ? 'visible' : 'hidden')};
@@ -120,20 +119,6 @@ const TrackInfo = styled.div`
     color: inherit;
   }
 
-  & > div:first-child {
-    position: absolute;
-    top: 35%;
-    left: 5.5%;
-    opacity: 0;
-    transition: all 0.75s;
-  }
-
-  &:hover {
-    & > div:first-child {
-      opacity: 1;
-    }
-  }
-
   img {
     height: 120px;
     width: 120px;
@@ -175,7 +160,6 @@ const VariantModal = props => {
     toggleVariantSelectionModal,
     selectVariant,
     openCart,
-    selectPreview,
   } = context.interface
 
   const addToCart = variant => {
@@ -205,10 +189,6 @@ const VariantModal = props => {
       }
     }
     return false
-  }
-
-  const handleAudioPreview = () => {
-    selectPreview(selectingVariantForProuct)
   }
 
   const renderVariants = () => {
@@ -265,9 +245,6 @@ const VariantModal = props => {
           </IconContext.Provider>
         </Close>
         <TrackInfo>
-          <PlayPauseButton
-            onClick={() => selectPreview(selectingVariantForProuct)}
-          />
           <img
             src={
               !!selectingVariantForProuct.images
@@ -276,7 +253,6 @@ const VariantModal = props => {
                 : ''
             }
             alt={selectingVariantForProuct.title}
-            onClick={() => handleAudioPreview()}
           />
           <div>
             <h2>{selectingVariantForProuct.title}</h2>

@@ -13,10 +13,8 @@ const Container = styled.li`
   align-items: center;
 
   padding: 8px;
-  background: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
-
-
 `
 
 const Image = styled.img`
@@ -41,7 +39,7 @@ const Description = styled.div`
     color: #39617d;
     margin-top: 2px;
     display: block;
-    opacity: .7;
+    opacity: 0.7;
   }
 `
 
@@ -52,17 +50,17 @@ const Price = styled.div`
     font-family: SarabunMedium, sans-serif;
     line-height: 20px;
     margin-right: 8px;
-    font-size: .85em;
+    font-size: 0.85em;
   }
 
   svg {
-    opacity: .3;
+    opacity: 0.3;
     transition: all 0.75s;
     cursor: pointer;
 
     :hover {
       opacity: 1;
-      color: #FF4400 !important;
+      color: #ff4400 !important;
     }
   }
 `
@@ -81,20 +79,23 @@ const LineItem = ({ context, product, currencySymbol }) => {
 
   const removeLineItem = lineItem => {
     store.removeLineItem(lineItem.id)
-    if(store.checkout.lineItems.length === 1) {
+    if (store.checkout.lineItems.length === 1) {
       context.interface.closeCart()
     }
   }
 
   const handleChangeVariant = () => {
-    const productFromVariant = store.products.find(p =>
-        p.shopifyId === product.variant.product.id
-      )
+    console.log(store)
+    const productFromVariant = store.products.find(
+      p => p.shopifyId === product.variant.product.id
+    )
 
-      if (!!productFromVariant) {
-        context.interface.selectVariant(productFromVariant)
-        context.interface.toggleVariantSelectionModal()
-      }
+    console.log(productFromVariant)
+
+    if (!!productFromVariant) {
+      context.interface.selectVariant(productFromVariant)
+      context.interface.toggleVariantSelectionModal()
+    }
   }
 
   return (
@@ -103,11 +104,18 @@ const LineItem = ({ context, product, currencySymbol }) => {
         <Image src={product.variant.image.src} alt={product.title} />
         <Description>
           <p>{product.title}</p>
-          <small>{product.variant.title} - <ChangeLeaseButton onClick={() => handleChangeVariant()}>change</ChangeLeaseButton></small>
+          <small>
+            {product.variant.title} -{' '}
+            <ChangeLeaseButton onClick={() => handleChangeVariant()}>
+              change
+            </ChangeLeaseButton>
+          </small>
         </Description>
       </Details>
       <Price>
-        <p>{product.variant.price} {currencySymbol}</p>
+        <p>
+          {product.variant.price} {currencySymbol}
+        </p>
         <IconContext.Provider
           value={{
             size: 18,
