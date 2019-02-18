@@ -18,6 +18,10 @@ const Container = styled.div`
   z-index: 5000;
   -webkit-transform: translateZ(0);
   padding: 40px;
+
+  @media (max-width: 700px) {
+    padding: 0;
+  }
 `
 
 const Content = styled.div`
@@ -44,6 +48,7 @@ const VariantList = styled.ul`
 
   @media (max-width: 700px) {
     flex-wrap: wrap;
+    padding: 8px;
   }
 `
 
@@ -103,6 +108,11 @@ const Close = styled.button`
   outline: none;
   cursor: pointer;
   z-index: 100;
+
+  @media (max-width: 700px) {
+    top: 24px;
+    right: 24px;
+  }
 `
 
 const TrackInfo = styled.div`
@@ -113,6 +123,10 @@ const TrackInfo = styled.div`
   background: #b8cfdf;
   display: flex;
   position: relative;
+
+  @media (max-width: 700px) {
+    padding: 16px;
+  }
 
   ::selection {
     background: none;
