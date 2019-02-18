@@ -185,11 +185,11 @@ class BeatDetails extends Component {
         <Header>
           <img src={beat.images[0].originalSrc} alt={beat.title} />
           <div>
-          <h1>{beat.title}</h1>
-          <TagList>
-            {beat.tags ? beat.tags.map(t => <li key={t}>{t}</li>) : ''}
-          </TagList>
-          </div> 
+            <h1>{beat.title}</h1>
+            <TagList>
+              {beat.tags ? beat.tags.map(t => <li key={t}>{t}</li>) : ''}
+            </TagList>
+          </div>
         </Header>
         <AudioPlayer />
         <AddToCart>Make it yours!</AddToCart>

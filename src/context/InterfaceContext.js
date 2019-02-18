@@ -7,7 +7,9 @@ export default class InterfaceContextProvider extends Component {
     super(props)
 
     this.toggleCart = this.toggleCart.bind(this)
-    this.toggleVariantSelectionModal = this.toggleVariantSelectionModal.bind(this)
+    this.toggleVariantSelectionModal = this.toggleVariantSelectionModal.bind(
+      this
+    )
     this.selectPreview = this.selectPreview.bind(this)
     this.setPlayerStatus = this.setPlayerStatus.bind(this)
     this.setPlayerVolume = this.setPlayerVolume.bind(this)
@@ -32,7 +34,7 @@ export default class InterfaceContextProvider extends Component {
         toggleVariantSelectionModal: this.toggleVariantSelectionModal,
         selectVariant: this.selectVariant,
         openCart: this.openCart,
-        closeCart: this.closeCart
+        closeCart: this.closeCart,
       },
     }
   }
@@ -48,27 +50,27 @@ export default class InterfaceContextProvider extends Component {
   }
 
   openCart() {
-    if(this.state.cartStatus === 'open') {
+    if (this.state.cartStatus === 'open') {
       return
     }
 
     this.setState(state => ({
       interface: {
         ...state.interface,
-        cartStatus: 'open'
+        cartStatus: 'open',
       },
     }))
   }
 
   closeCart() {
-    if(this.state.cartStatus === 'closed') {
+    if (this.state.cartStatus === 'closed') {
       return
     }
 
     this.setState(state => ({
       interface: {
         ...state.interface,
-        cartStatus: 'closed'
+        cartStatus: 'closed',
       },
     }))
   }
@@ -78,9 +80,11 @@ export default class InterfaceContextProvider extends Component {
       interface: {
         ...state.interface,
         variantSelectionModalStatus:
-          this.state.interface.variantSelectionModalStatus === 'open' ? 'closed' : 'open',
+          this.state.interface.variantSelectionModalStatus === 'open'
+            ? 'closed'
+            : 'open',
       },
-    }))    
+    }))
   }
 
   selectVariant(product) {
@@ -88,7 +92,7 @@ export default class InterfaceContextProvider extends Component {
       interface: {
         ...state.interface,
         selectingVariantForProuct: product || {},
-        variantSelectionModalStatus: !!product ? 'open' : 'closed'
+        variantSelectionModalStatus: !!product ? 'open' : 'closed',
       },
     }))
   }
@@ -97,7 +101,7 @@ export default class InterfaceContextProvider extends Component {
     this.setState(state => ({
       interface: {
         ...state.interface,
-        playerStatus: status
+        playerStatus: status,
       },
     }))
   }
@@ -106,7 +110,7 @@ export default class InterfaceContextProvider extends Component {
     this.setState(state => ({
       interface: {
         ...state.interface,
-        playerStatus: 'STOPPED'
+        playerStatus: 'STOPPED',
       },
     }))
   }
@@ -115,7 +119,7 @@ export default class InterfaceContextProvider extends Component {
     this.setState(state => ({
       interface: {
         ...state.interface,
-        playerVolume
+        playerVolume,
       },
     }))
   }
@@ -126,7 +130,7 @@ export default class InterfaceContextProvider extends Component {
       interface: {
         ...state.interface,
         playerStatus: 'PLAYING',
-        previewFile
+        previewFile,
       },
     }))
   }

@@ -102,7 +102,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           ...product,
         },
-        layout: 'index'
+        layout: 'index',
       })
     }
   })

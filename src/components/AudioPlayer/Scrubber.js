@@ -11,7 +11,7 @@ const Container = styled.div`
   transition: height 0.2s;
 
   :hover {
-      height: 8px;
+    height: 8px;
   }
 `
 
@@ -23,7 +23,7 @@ const Rails = styled.div`
 
 const Track = styled.div`
   width: ${props => `${props.computedWidth}%`};
-  opacity: .6;
+  opacity: 0.6;
   height: 100%;
   bottom: 0;
   position: absolute;
@@ -39,7 +39,7 @@ const Scrubber = props => {
     const currentTargetRect = e.currentTarget.getBoundingClientRect()
     const offsetX = e.pageX - currentTargetRect.left
     const { width } = e.target.nextElementSibling.getBoundingClientRect()
-    const newPosition = offsetX * duration / width
+    const newPosition = (offsetX * duration) / width
 
     props.callback(newPosition)
   }
@@ -48,14 +48,17 @@ const Scrubber = props => {
     const currentTargetRect = e.currentTarget.getBoundingClientRect()
     const offsetX = e.pageX - currentTargetRect.left
     const { width } = currentTargetRect
-    const newPosition = offsetX * duration / width
+    const newPosition = (offsetX * duration) / width
 
     props.callback(newPosition)
   }
 
   return (
     <Container>
-      <Track computedWidth={trackWidth || 0} onClick={e => handleTrackClick(e)} />
+      <Track
+        computedWidth={trackWidth || 0}
+        onClick={e => handleTrackClick(e)}
+      />
       <Rails onClick={e => handleRailsClick(e)} />
     </Container>
   )

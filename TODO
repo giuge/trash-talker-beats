@@ -16,3 +16,4 @@
 - add background waveform
 - add variant lease description @done
 - make the filter by tag criteria more strict (allow only for exact match) @done
+- cleanup code

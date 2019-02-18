@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Sound from 'react-sound'
 import styled from 'styled-components'
 
@@ -27,29 +27,33 @@ const NowPlaying = styled.small`
   margin-bottom: 4px;
 `
 
-class AudioPlayer extends Component  {
+class AudioPlayer extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       position: {},
-      seekPosition: 0
+      seekPosition: 0,
     }
   }
 
   handleCallback(seekPosition) {
     this.setState(state => ({
       ...state,
-      seekPosition: seekPosition
+      seekPosition: seekPosition,
     }))
   }
 
   render() {
-    const { previewFile, playerStatus, playerVolume } = this.props.context.interface
+    const {
+      previewFile,
+      playerStatus,
+      playerVolume,
+    } = this.props.context.interface
 
     return (
       <Container>
-        <div style={{width : '40%'}}>
+        <div style={{ width: '40%' }}>
           <NowPlaying>Now Playing</NowPlaying>
           <h2>
             {previewFile.title ? `${previewFile.title}` : 'No track selected'}
@@ -62,17 +66,24 @@ class AudioPlayer extends Component  {
             playStatus={playerStatus}
             volume={playerVolume}
             position={this.state.seekPosition}
-            onPlaying={(position, _) => this.setState(_ => ({position, seekPosition: position.position}))}
-            onStop={() => this.setState({position: {}, seekPosition: 0})}
+            onPlaying={(position, _) =>
+              this.setState(_ => ({
+                position,
+                seekPosition: position.position,
+              }))
+            }
+            onStop={() => this.setState({ position: {}, seekPosition: 0 })}
           />
           <PlayPauseButton />
         </div>
         <VolumeController />
-        <Scrubber position={this.state.position} callback={(p) => this.handleCallback(p)} />
+        <Scrubber
+          position={this.state.position}
+          callback={p => this.handleCallback(p)}
+        />
       </Container>
     )
   }
-
 }
 
 export default withInterfaceContext(AudioPlayer)
