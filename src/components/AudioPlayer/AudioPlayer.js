@@ -44,6 +44,12 @@ class AudioPlayer extends Component {
     }))
   }
 
+  componentDidMount() {
+    if (window && !!window.soundManager) {
+      window.soundManager.setup({ ignoreMobileRestrictions: true })
+    }
+  }
+
   render() {
     const {
       previewFile,
