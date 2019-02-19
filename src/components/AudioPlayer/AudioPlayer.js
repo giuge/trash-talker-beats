@@ -46,7 +46,10 @@ class AudioPlayer extends Component {
 
   componentDidMount() {
     if (window && !!window.soundManager) {
-      window.soundManager.setup({ ignoreMobileRestrictions: true })
+      window.soundManager.setup({
+        ignoreMobileRestrictions: true,
+        useHighPerformance: true,
+      })
     }
   }
 
