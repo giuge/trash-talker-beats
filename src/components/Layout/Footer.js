@@ -10,9 +10,11 @@ const Container = styled.footer`
   font-size: 14px;
   text-align: center;
 
-  a, a:visited, a:active {
-    color: #DCEAF4;
-    transition: all .5s;
+  a,
+  a:visited,
+  a:active {
+    color: #dceaf4;
+    transition: all 0.5s;
   }
 
   a:hover {

@@ -5,6 +5,7 @@
  */
 
 const path = require('path')
+const getValidBeats = require('./src/utils/products.js')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -67,7 +68,7 @@ exports.createPages = async ({ graphql, actions }) => {
     if (!!edge.node.body) {
       createPage({
         path: `/${handle}`,
-        component: path.resolve('./src/components/shared/LegalPage.js'),
+        component: path.resolve('./src/components/LegalPage.js'),
         context: {
           ...edge.node,
         },
@@ -78,32 +79,15 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create beat pages
   const { products } = allPages.data.allShopifyCollection.edges[0].node
   const previews = allPages.data.allFile.edges
-  const productsWithRequiredVariants = products.filter(
-    p => p.variants.length === 4
-  )
+  const validBeats = getValidBeats(products, previews)
 
-  const validProducts = productsWithRequiredVariants.reduce((acc, b) => {
-    const beatTitleParts = b.title.toLowerCase().split(' ')
-    const beatSlug = beatTitleParts.join('_')
-    const preview = previews.find(t => t.node.name.includes(beatSlug))
-
-    if (!!preview) {
-      acc.push(Object.assign(b, { preview: { ...preview.node } }))
-    }
-
-    return acc
-  }, [])
-
-  validProducts.forEach(product => {
-    if (!!product) {
-      createPage({
-        path: `/beats/${product.handle}`,
-        component: path.resolve('./src/components/shared/BeatPage/BeatPage.js'),
-        context: {
-          ...product,
-        },
-        layout: 'index',
-      })
-    }
+  validBeats.forEach(beat => {
+    createPage({
+      path: `/beats/${beat.handle}`,
+      component: path.resolve('./src/components/BeatPage/BeatPage.js'),
+      context: {
+        ...beat,
+      },
+    })
   })
 }

@@ -37,7 +37,7 @@ class SearchInput extends Component {
     this.container = React.createRef()
     this.input = React.createRef()
     this.state = {
-      text: ''
+      text: '',
     }
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
@@ -51,17 +51,24 @@ class SearchInput extends Component {
   }
 
   handleKeyDown(e) {
-    if (e.keyCode === 9 || e.keyCode === 13) {  
+    if (e.keyCode === 9 || e.keyCode === 13) {
       const node = this.container.current
-      const firstSuggestion = node.querySelectorAll('.react-tags__suggestions ul li')[0]
+      const firstSuggestion = node.querySelectorAll(
+        '.react-tags__suggestions ul li'
+      )[0]
 
-      if(!!firstSuggestion) {
-        const regex = /(<([^>]+)>)/ig
+      if (!!firstSuggestion) {
+        const regex = /(<([^>]+)>)/gi
         const value = firstSuggestion.children[0].innerHTML.replace(regex, '')
-        const input = node.querySelectorAll('.react-tags__search-input input')[0]
+        const input = node.querySelectorAll(
+          '.react-tags__search-input input'
+        )[0]
 
-        if(!!input && !!value) {
-          const nativeValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set
+        if (!!input && !!value) {
+          const nativeValueSetter = Object.getOwnPropertyDescriptor(
+            window.HTMLInputElement.prototype,
+            'value'
+          ).set
           const event = new Event('input', { bubbles: true })
           nativeValueSetter.call(input, value)
           input.dispatchEvent(event)
@@ -94,7 +101,7 @@ class SearchInput extends Component {
         </IconContext.Provider>
 
         <ReactTags
-          autofocus={false} 
+          autofocus={false}
           ref={this.input}
           tags={search.tags}
           suggestions={search.suggestions}

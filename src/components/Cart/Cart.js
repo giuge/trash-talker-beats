@@ -38,7 +38,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1000;
-  background: #B8CFDF;
+  background: #b8cfdf;
 `
 
 const Header = styled.header`
@@ -107,7 +107,7 @@ const Total = styled.div`
 
   h4 {
     font-family: SarabunBold, sans-serif;
-    font-size: .85em;
+    font-size: 0.85em;
     text-transform: uppercase;
   }
 
@@ -121,13 +121,7 @@ const Cart = props => {
   const { context } = props
   const { store } = context
   const { checkout } = store
-
   const currencySymbol = checkout.currencyCode === 'EUR' ? '€' : '$'
-
-  // const itemsInCart = checkout.lineItems.reduce(
-  //   (total, item) => total + item.quantity,
-  //   0
-  // )
 
   return (
     <Container cartStatus={context.interface.cartStatus}>

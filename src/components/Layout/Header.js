@@ -84,13 +84,13 @@ const Header = ({ siteTitle, context }) => {
             </Link>
           </Logo>
           <div style={{ width: '20%', textAlign: 'right' }}>
-          <CartLink
-            href="#"
-            onClick={e => handleClick(e)}
-            cartStatus={context.interface.cartStatus}
-          >
-            Cart ({itemsInCart})
-          </CartLink>
+            <CartLink
+              href="#"
+              onClick={e => handleClick(e)}
+              cartStatus={context.interface.cartStatus}
+            >
+              Cart ({itemsInCart})
+            </CartLink>
           </div>
         </Container>
       )}

@@ -196,7 +196,11 @@ const Product = props => {
         <h3>{beat.title}</h3>
         <Tags>
           {beat.tags.map(t => (
-            <li key={t} onClick={e => handleTagClick(e, t)}>{`#${t}`}</li>
+            <li
+              key={t}
+              onClick={e => handleTagClick(e, t)}
+              title="Click to filter"
+            >{`#${t}`}</li>
           ))}
         </Tags>
       </Details>

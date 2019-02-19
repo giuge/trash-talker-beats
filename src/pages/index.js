@@ -2,29 +2,15 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout/'
-import SEO from '../components/Seo'
-import Products from '../components/Products/'
+import SEO from '../components/shared/Seo'
+import BeatList from '../components/BeatList/'
+import getValidBeats from '../utils/products.js'
 
 const IndexPage = props => {
   // We need products that have all the required variants and have a preview file
   const { products } = props.data.allShopifyCollection.edges[0].node
   const previews = props.data.allFile.edges
-
-  const productsWithRequiredVariants = products.filter(
-    p => p.variants.length === 4
-  )
-
-  const validProducts = productsWithRequiredVariants.reduce((acc, b) => {
-    const beatTitleParts = b.title.toLowerCase().split(' ')
-    const beatSlug = beatTitleParts.join('_')
-    const preview = previews.find(t => t.node.name.includes(beatSlug))
-
-    if (!!preview) {
-      acc.push(Object.assign(b, { preview: { ...preview.node } }))
-    }
-
-    return acc
-  }, [])
+  const validProducts = getValidBeats(products, previews)
 
   return (
     <Layout>
@@ -46,7 +32,7 @@ const IndexPage = props => {
           `ableton`,
         ]}
       />
-      <Products products={validProducts} {...props} />
+      <BeatList products={validProducts} {...props} />
     </Layout>
   )
 }

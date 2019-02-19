@@ -8,7 +8,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Light"), local("SarabunLight"), url(${fontFiles.SarabunLightTTF}) format("truetype"), url(${fontFiles.SarabunLightWOFF}) format("woff"); 
+    src: local("Sarabun Light"), local("SarabunLight"), url(${
+      fontFiles.SarabunLightTTF
+    }) format("truetype"), url(${fontFiles.SarabunLightWOFF}) format("woff"); 
 }
 
 @font-face { 
@@ -16,7 +18,11 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun LightItalic"), local("SarabunLightItalic"), url(${fontFiles.SarabunLightItalicTTF}) format("truetype"), url(${fontFiles.SarabunLightItalicWOFF}) format("woff"); 
+    src: local("Sarabun LightItalic"), local("SarabunLightItalic"), url(${
+      fontFiles.SarabunLightItalicTTF
+    }) format("truetype"), url(${
+  fontFiles.SarabunLightItalicWOFF
+}) format("woff"); 
 }
 
 @font-face { 
@@ -24,7 +30,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Regular"), local("SarabunRegular"), url(${fontFiles.SarabunRegularTTF}) format("truetype"), url(${fontFiles.SarabunRegularWOFF}) format("woff"); 
+    src: local("Sarabun Regular"), local("SarabunRegular"), url(${
+      fontFiles.SarabunRegularTTF
+    }) format("truetype"), url(${fontFiles.SarabunRegularWOFF}) format("woff"); 
 }
 
 @font-face { 
@@ -32,7 +40,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Italic"), local("SarabunItalic"), url(${fontFiles.SarabunItalicTTF}) format("truetype"), url(${fontFiles.SarabunItalicWOFF}) format("woff"); 
+    src: local("Sarabun Italic"), local("SarabunItalic"), url(${
+      fontFiles.SarabunItalicTTF
+    }) format("truetype"), url(${fontFiles.SarabunItalicWOFF}) format("woff"); 
 }
 
 @font-face { 
@@ -40,7 +50,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Medium"), local("SarabunMedium"), url(${fontFiles.SarabunMediumTTF}) format("truetype"), url(${fontFiles.SarabunMediumWOFF}) format("woff"); 
+    src: local("Sarabun Medium"), local("SarabunMedium"), url(${
+      fontFiles.SarabunMediumTTF
+    }) format("truetype"), url(${fontFiles.SarabunMediumWOFF}) format("woff"); 
 }
 
 @font-face { 
@@ -48,7 +60,11 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun MediumItalic"), local("SarabunMediumItalic"), url(${fontFiles.SarabunMediumItalicTTF}) format("truetype"), url(${fontFiles.SarabunMediumItalicWOFF}) format("woff"); 
+    src: local("Sarabun MediumItalic"), local("SarabunMediumItalic"), url(${
+      fontFiles.SarabunMediumItalicTTF
+    }) format("truetype"), url(${
+  fontFiles.SarabunMediumItalicWOFF
+}) format("woff"); 
 }
 
 @font-face { 
@@ -56,7 +72,11 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Semibold"), local("SarabunSemibold"), url(${fontFiles.SarabunSemiboldTTF}) format("truetype"), url(${fontFiles.SarabunSemiboldWOFF}) format("woff"); 
+    src: local("Sarabun Semibold"), local("SarabunSemibold"), url(${
+      fontFiles.SarabunSemiboldTTF
+    }) format("truetype"), url(${
+  fontFiles.SarabunSemiboldWOFF
+}) format("woff"); 
 }
 
 @font-face { 
@@ -64,7 +84,11 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun SemiboldItalic"), local("SarabunSemiboldItalic"), url(${fontFiles.SarabunSemiboldItalicTTF}) format("truetype"), url(${fontFiles.SarabunSemiboldItalicWOFF}) format("woff"); 
+    src: local("Sarabun SemiboldItalic"), local("SarabunSemiboldItalic"), url(${
+      fontFiles.SarabunSemiboldItalicTTF
+    }) format("truetype"), url(${
+  fontFiles.SarabunSemiboldItalicWOFF
+}) format("woff"); 
 }
 
 @font-face { 
@@ -72,7 +96,9 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun Bold"), local("SarabunBold"), url(${fontFiles.SarabunBoldTTF}) format("truetype"), url(${fontFiles.SarabunBoldWOFF}) format("woff"); 
+    src: local("Sarabun Bold"), local("SarabunBold"), url(${
+      fontFiles.SarabunBoldTTF
+    }) format("truetype"), url(${fontFiles.SarabunBoldWOFF}) format("woff"); 
 }
 
 @font-face { 
@@ -80,7 +106,11 @@ const GlobalStyle = createGlobalStyle`
     font-display: fallback;
     font-style: normal; 
     font-weight: normal; 
-    src: local("Sarabun BoldItalic"), local("SarabunBoldItalic"), url(${fontFiles.SarabunBoldItalicTTF}) format("truetype"), url(${fontFiles.SarabunBoldItalicWOFF}) format("woff"); 
+    src: local("Sarabun BoldItalic"), local("SarabunBoldItalic"), url(${
+      fontFiles.SarabunBoldItalicTTF
+    }) format("truetype"), url(${
+  fontFiles.SarabunBoldItalicWOFF
+}) format("woff"); 
 }
 
 

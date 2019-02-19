@@ -85,7 +85,6 @@ const LineItem = ({ context, product, currencySymbol }) => {
   }
 
   const handleChangeVariant = () => {
-    console.log(store)
     const productFromVariant = store.products.find(
       p => p.shopifyId === product.variant.product.id
     )

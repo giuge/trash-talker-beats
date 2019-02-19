@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { withAllContext } from '../../../context/AllContext'
-import AudioPlayer from '../../AudioPlayer'
+import { withAllContext } from '../../context/AllContext'
+import AudioPlayer from '../AudioPlayer'
 
 const Container = styled.div`
   background: #0d2b40;
@@ -179,7 +179,6 @@ class BeatDetails extends Component {
   render() {
     const { beat } = this.props
 
-    console.log(beat)
     return (
       <Container>
         <Header>

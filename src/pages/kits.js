@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import Layout from '../components/Layout/'
-import SEO from '../components/Seo'
+import SEO from '../components/shared/Seo'
 
 const SecondPage = () => (
   <Layout>
@@ -10,7 +10,7 @@ const SecondPage = () => (
     <h1>Hi from the kits page</h1>
     <p>Welcome to the kits page</p>
     <Link to="/">Go back to the homepage</Link>
-    </Layout>
+  </Layout>
 )
 
 export default SecondPage

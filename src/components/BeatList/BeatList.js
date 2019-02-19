@@ -3,9 +3,9 @@ import { navigate } from '@reach/router'
 import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
-import Product from './Product'
+import Product from './Beat'
 import SearchInput from './SearchInput'
-import AudioPlayer from '../AudioPlayer/'
+import AudioPlayer from '../AudioPlayer'
 
 const Container = styled.div`
   margin: 0 auto;
@@ -44,7 +44,7 @@ const EmptyText = styled.p`
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.5em;
-  color: #87ADC8;
+  color: #87adc8;
   line-height: 140%;
 `
 
@@ -74,9 +74,12 @@ class ProductsList extends Component {
     const { context } = this.props
     const { search } = context.store
 
-    if(prevProps.context.store.search.tags.length !== context.store.search.tags.length) {
+    if (
+      prevProps.context.store.search.tags.length !==
+      context.store.search.tags.length
+    ) {
       search.filterProducts()
-    }    
+    }
   }
 
   renderProducts() {
@@ -85,29 +88,25 @@ class ProductsList extends Component {
     const { filteredProducts, tags } = context.store.search
     const productsToUse = tags.length !== 0 ? filteredProducts : products
 
-    if(tags.length === 0) {
-      if(products.length === 0) {
+    if (tags.length === 0) {
+      if (products.length === 0) {
         return <EmptyText>No products in store</EmptyText>
       }
     } else {
-      if(filteredProducts.length === 0) {
+      if (filteredProducts.length === 0) {
         return <EmptyText>No product matches your criteria</EmptyText>
       }
     }
 
-    return productsToUse.map(p => (
-      <Product beat={p} key={p.id} />
-    ))
+    return productsToUse.map(p => <Product beat={p} key={p.id} />)
   }
 
-  render() {   
+  render() {
     return (
       <Container>
         <SearchInput />
         <AudioPlayer />
-        <List>
-          {this.renderProducts()}
-        </List>
+        <List>{this.renderProducts()}</List>
       </Container>
     )
   }
