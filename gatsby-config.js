@@ -43,11 +43,35 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-shopify",
+      resolve: 'gatsby-source-shopify',
       options: {
-        shopName: "trashtalkerbeats",
-        accessToken: "333054976ed51e49aeee693e8bf0451d",
+        shopName: 'trashtalkerbeats',
+        accessToken: '333054976ed51e49aeee693e8bf0451d',
         verbose: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-134915036-1',
+        // Puts tracking script in the head instead of the body
+        head: false,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: false,
+        // Avoids sending pageview hits from custom paths
+        exclude: [],
+        // Enables Google Optimize using your container Id
+        optimizeId: '',
+        // Enables Google Optimize Experiment ID
+        experimentId: '',
+        // Set Variation ID. 0 for original 1,2,3....
+        variationId: '',
+        // Any additional create only fields (optional)
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: 'trashtalkerbeats.com',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

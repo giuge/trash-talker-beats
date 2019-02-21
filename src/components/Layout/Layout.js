@@ -11,6 +11,8 @@ import GlobalStyle from '../../utils/styles'
 import StoreContextProvider from '../../context/StoreContext'
 import InterfaceContextProvider from '../../context/InterfaceContext'
 
+import SubscribeForm from '../shared/SubscribeForm'
+
 const Container = styled.div`
   margin: 0 auto;
   max-width: 960px;
@@ -43,6 +45,7 @@ const Layout = props => (
           <Cart />
           <Header siteTitle={data.site.siteMetadata.title} />
           <Container>{props.children}</Container>
+          {/* <SubscribeForm /> */}
           <Footer />
         </StoreContextProvider>
       </InterfaceContextProvider>
