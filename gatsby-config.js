@@ -3,9 +3,11 @@ module.exports = {
     title: `Trash Talker Beats`,
     description: `Listen to and buy the best produced beats.`,
     author: `@giuge`,
+    siteUrl: `https://trashtalkerbeats.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
