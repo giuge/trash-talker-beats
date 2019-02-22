@@ -23,19 +23,19 @@ class Waveform extends Component {
     this.analyser = null
   }
 
-  componentDidMount() {
-    this.audioContextCheck = window.AudioContext || window.webkitAudioContext
-    this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
-    this.analyser = this.audioContext.createAnalyser()
-    this.analyser.fftSize = 256
-    this.props.startAnimation()
-  }
+  componentDidMount() {}
 
   componentDidUpdate() {
     const { playerStatus, previewFile } = this.props.context.interface
     const { soundManager } = window
 
     if (playerStatus === 'PLAYING') {
+      this.audioContextCheck = window.AudioContext || window.webkitAudioContext
+      this.audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)()
+      this.analyser = this.audioContext.createAnalyser()
+      this.analyser.fftSize = 256
+
       const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
         soundManager.sounds[k].instanceOptions.url.includes(
           previewFile.preview.name
@@ -45,6 +45,8 @@ class Waveform extends Component {
       const audio = soundManager.sounds[currentAudioFile]
         ? soundManager.sounds[currentAudioFile]._a
         : null
+
+      this.props.startAnimation()
 
       try {
         const source = this.audioContext.createMediaElementSource(audio)
