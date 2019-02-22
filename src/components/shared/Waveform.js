@@ -17,13 +17,17 @@ class Waveform extends Component {
   constructor(props) {
     super(props)
 
-    const AudioContext = window
-      ? window.AudioContext || window.webkitAudioContext
-      : null
-    this.audioContext = new AudioContext()
-    this.analyser = this.audioContext.createAnalyser()
-    this.analyser.fftSize = 256
+    this.audioContextCheck = null
+    this.analyser = null
     this.canvas = React.createRef()
+
+    if (window) {
+      this.audioContextCheck = window.AudioContext || window.webkitAudioContext
+      this.audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)()
+      this.analyser = this.audioContext.createAnalyser()
+      this.analyser.fftSize = 256
+    }
   }
 
   componentDidMount() {
@@ -98,6 +102,10 @@ class Waveform extends Component {
   }
 
   render() {
+    if (!this.audioContextCheck) {
+      return ''
+    }
+
     return (
       <Container
         ref={this.canvas}
