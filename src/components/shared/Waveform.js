@@ -17,11 +17,9 @@ class Waveform extends Component {
   constructor(props) {
     super(props)
 
-    this.audioContextCheck = null
-    this.analyser = null
     this.canvas = React.createRef()
 
-    if (window) {
+    if (typeof window !== 'undefined') {
       this.audioContextCheck = window.AudioContext || window.webkitAudioContext
       this.audioContext = new (window.AudioContext ||
         window.webkitAudioContext)()
@@ -35,30 +33,31 @@ class Waveform extends Component {
   }
 
   componentDidUpdate() {
-    const { playerStatus, previewFile } = this.props.context.interface
-
-    if (playerStatus === 'PLAYING') {
+    if (typeof window !== 'undefined') {
+      const { playerStatus, previewFile } = this.props.context.interface
       const { soundManager } = window
 
-      const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
-        soundManager.sounds[k].instanceOptions.url.includes(
-          previewFile.preview.name
+      if (playerStatus === 'PLAYING') {
+        const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
+          soundManager.sounds[k].instanceOptions.url.includes(
+            previewFile.preview.name
+          )
         )
-      )
 
-      const audio = soundManager.sounds[currentAudioFile]
-        ? soundManager.sounds[currentAudioFile]._a
-        : null
+        const audio = soundManager.sounds[currentAudioFile]
+          ? soundManager.sounds[currentAudioFile]._a
+          : null
 
-      try {
-        const source = this.audioContext.createMediaElementSource(audio)
-        source.connect(this.analyser)
-        this.analyser.connect(this.audioContext.destination)
-      } catch (e) {}
+        try {
+          const source = this.audioContext.createMediaElementSource(audio)
+          source.connect(this.analyser)
+          this.analyser.connect(this.audioContext.destination)
+        } catch (e) {}
 
-      this.props.startAnimation()
-    } else if (playerStatus !== 'PLAYING') {
-      this.props.endAnimation()
+        this.props.startAnimation()
+      } else if (playerStatus !== 'PLAYING') {
+        this.props.endAnimation()
+      }
     }
   }
 
