@@ -12,10 +12,6 @@ const Container = styled.canvas`
   height: 200px;
   z-index: -10;
   opacity: 0.2;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
 `
 
 class Waveform extends Component {
@@ -29,22 +25,18 @@ class Waveform extends Component {
   }
 
   componentDidMount() {
-    const { playerStatus } = this.props.context.interface
-
     this.audioContextCheck = window.AudioContext || window.webkitAudioContext
     this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
     this.analyser = this.audioContext.createAnalyser()
     this.analyser.fftSize = 256
-
-    console.log(this.audioContext)
   }
 
   componentDidUpdate() {
     const { playerStatus, previewFile } = this.props.context.interface
     const { soundManager } = window
 
-    this.audioContext.resume().then(() => console.log(this.audioContext))
+    this.audioContext.resume()
 
     if (playerStatus === 'PLAYING') {
       const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
