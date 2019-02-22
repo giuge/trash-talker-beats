@@ -58,6 +58,7 @@ class AudioPlayer extends Component {
       previewFile,
       playerStatus,
       playerVolume,
+      setPlayerStatus,
     } = this.props.context.interface
 
     return (
@@ -75,6 +76,11 @@ class AudioPlayer extends Component {
             playStatus={playerStatus}
             volume={playerVolume}
             position={this.state.seekPosition}
+            onLoad={() =>
+              /* Needed to trigger the waveform */
+              setPlayerStatus('PLAYING')
+            }
+            autoLoad={true}
             onPlaying={(position, _) =>
               this.setState(_ => ({
                 position,

@@ -8,14 +8,16 @@
 - make sure you only show files that have 4 variants @done
 - implement search functionality @done
 - generate legal pages from shopify @done
-- add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/)
+- add analytics (https://www.gatsbyjs.org/packages/gatsby-plugin-facebook-pixel/, https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/) @done
 - responsive design @done
-- add empty cart illustration and don't close when empty
 - add ability to preview audio from variant modal (just play pause) @done
 - maybe add a single page for every beat @done
-- add background waveform
 - add variant lease description @done
 - make the filter by tag criteria more strict (allow only for exact match) @done
 - cleanup code @done
+- add empty cart illustration and don't close when empty
 - integrate email marketing signup
 - implement related products
+- automatic promo code activation in store state 
+- add background waveform @done
+- add cookie banner

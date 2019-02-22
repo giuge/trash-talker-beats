@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { navigate } from '@reach/router'
 import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
@@ -50,24 +49,12 @@ const EmptyText = styled.p`
 
 class ProductsList extends Component {
   componentDidMount() {
-    const { context, products, location } = this.props
+    const { context, products } = this.props
     const { search } = context.store
-    const { hash } = location
 
     context.store.updateProducts(products)
     search.updateSuggestions()
     search.filterProducts()
-
-    if (!!hash) {
-      const selectedBeat = products.find(b => b.handle === hash.substr(1))
-
-      if (!!selectedBeat) {
-        context.interface.selectVariant(selectedBeat)
-        context.interface.toggleVariantSelectionModal()
-      }
-
-      navigate('/')
-    }
   }
 
   componentDidUpdate(prevProps) {
