@@ -80,7 +80,6 @@ class AudioPlayer extends Component {
               /* Needed to trigger the waveform */
               setPlayerStatus('PLAYING')
             }
-            autoLoad={true}
             onPlaying={(position, _) =>
               this.setState(_ => ({
                 position,
