@@ -30,28 +30,21 @@ class Waveform extends Component {
 
   componentDidMount() {
     const { playerStatus } = this.props.context.interface
-    if (playerStatus !== 'PLAYING') {
-      this.audioContextCheck = window.AudioContext || window.webkitAudioContext
-      this.audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)()
 
-      this.analyser = this.audioContext.createAnalyser()
-      this.analyser.fftSize = 256
-    }
+    this.audioContextCheck = window.AudioContext || window.webkitAudioContext
+    this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+    this.analyser = this.audioContext.createAnalyser()
+    this.analyser.fftSize = 256
+
+    console.log(this.audioContext)
   }
 
   componentDidUpdate() {
     const { playerStatus, previewFile } = this.props.context.interface
     const { soundManager } = window
 
-    if (playerStatus !== 'PLAYING' && !this.audioContext) {
-      this.audioContextCheck = window.AudioContext || window.webkitAudioContext
-      this.audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)()
-
-      this.analyser = this.audioContext.createAnalyser()
-      this.analyser.fftSize = 256
-    }
+    this.audioContext.resume().then(() => console.log(this.audioContext))
 
     if (playerStatus === 'PLAYING') {
       const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
