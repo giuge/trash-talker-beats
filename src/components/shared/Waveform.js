@@ -11,6 +11,10 @@ const Container = styled.canvas`
   left: 0;
   height: 200px;
   z-index: -10;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `
 
 class Waveform extends Component {
