@@ -7,10 +7,11 @@ const Container = styled.canvas`
   visibility: ${props => (props.playing ? 'visible' : 'hidden')};
   width: 100%;
   position: absolute;
-  top: 8%;
+  top: 10%;
   left: 0;
   height: 200px;
   z-index: -10;
+  opacity: 0.2;
 
   @media (max-width: 700px) {
     display: none;
@@ -27,19 +28,32 @@ class Waveform extends Component {
     this.analyser = null
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { playerStatus } = this.props.context.interface
+    if (playerStatus !== 'PLAYING') {
+      this.audioContextCheck = window.AudioContext || window.webkitAudioContext
+      this.audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)()
+
+      this.analyser = this.audioContext.createAnalyser()
+      this.analyser.fftSize = 256
+    }
+  }
 
   componentDidUpdate() {
     const { playerStatus, previewFile } = this.props.context.interface
     const { soundManager } = window
 
-    if (playerStatus === 'PLAYING') {
+    if (playerStatus !== 'PLAYING' && !this.audioContext) {
       this.audioContextCheck = window.AudioContext || window.webkitAudioContext
       this.audioContext = new (window.AudioContext ||
         window.webkitAudioContext)()
+
       this.analyser = this.audioContext.createAnalyser()
       this.analyser.fftSize = 256
+    }
 
+    if (playerStatus === 'PLAYING') {
       const currentAudioFile = Object.keys(soundManager.sounds).filter(k =>
         soundManager.sounds[k].instanceOptions.url.includes(
           previewFile.preview.name
@@ -72,16 +86,16 @@ class Waveform extends Component {
 
     const bufferLength = this.analyser.frequencyBinCount
     const dataArray = new Uint8Array(bufferLength)
-    const WIDTH = 1024
-    const HEIGHT = 100
+    const WIDTH = window.innerWidth
+    const HEIGHT = 80
 
     ctx.clearRect(0, 0, WIDTH, HEIGHT)
 
     this.analyser.getByteTimeDomainData(dataArray)
     ctx.fillStyle = 'transparent'
     ctx.fillRect(0, 0, WIDTH, HEIGHT)
-    ctx.lineWidth = 2
-    ctx.strokeStyle = '#0D2B40'
+    ctx.lineWidth = 4
+    ctx.strokeStyle = '#DCEAF4'
     ctx.beginPath()
 
     const sliceWidth = (WIDTH * 1.0) / bufferLength
