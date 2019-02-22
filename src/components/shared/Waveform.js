@@ -17,6 +17,7 @@ class Waveform extends Component {
   constructor(props) {
     super(props)
 
+    const AudioContext = window.AudioContext || window.webkitAudioContext
     this.audioContext = new AudioContext()
     this.analyser = this.audioContext.createAnalyser()
     this.analyser.fftSize = 256
@@ -24,7 +25,6 @@ class Waveform extends Component {
   }
 
   componentDidMount() {
-    console.log('Animation started')
     this.props.startAnimation()
   }
 
@@ -44,18 +44,14 @@ class Waveform extends Component {
         ? soundManager.sounds[currentAudioFile]._a
         : null
 
-      console.log('Update started...')
-      console.log(audio, 'audio')
       try {
         const source = this.audioContext.createMediaElementSource(audio)
         source.connect(this.analyser)
         this.analyser.connect(this.audioContext.destination)
       } catch (e) {}
 
-      console.log('Animation started')
       this.props.startAnimation()
     } else if (playerStatus !== 'PLAYING') {
-      console.log('Animation ended')
       this.props.endAnimation()
     }
   }
@@ -102,7 +98,6 @@ class Waveform extends Component {
   render() {
     return (
       <Container
-        id="analyser_render"
         ref={this.canvas}
         playing={this.props.context.interface.playerStatus === 'PLAYING'}
       />
