@@ -17,7 +17,9 @@ class Waveform extends Component {
   constructor(props) {
     super(props)
 
-    const AudioContext = window.AudioContext || window.webkitAudioContext
+    const AudioContext = window
+      ? window.AudioContext || window.webkitAudioContext
+      : null
     this.audioContext = new AudioContext()
     this.analyser = this.audioContext.createAnalyser()
     this.analyser.fftSize = 256
