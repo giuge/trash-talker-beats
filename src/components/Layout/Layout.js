@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import CookieBanner from 'react-cookie-banner'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -46,6 +47,19 @@ const Layout = props => (
           <Header siteTitle={data.site.siteMetadata.title} />
           <Container>{props.children}</Container>
           {/* <SubscribeForm /> */}
+          <CookieBanner
+            styles={{
+              banner: {
+                backgroundColor: '#0D2B40',
+                position: 'fixed',
+                bottom: 0,
+              },
+              message: { fontFamily: 'SarabunLight, sans-serif' },
+            }}
+            message="We use cookies to guarantee users the employment of its site features, offering a better purchasing experience. By continuing to browse the site you're agreeing to our use of cookies."
+            onAccept={() => {}}
+            cookie="user-has-accepted-cookies"
+          />
           <Footer />
         </StoreContextProvider>
       </InterfaceContextProvider>
