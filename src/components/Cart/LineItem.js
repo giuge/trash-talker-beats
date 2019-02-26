@@ -79,9 +79,6 @@ const LineItem = ({ context, product, currencySymbol }) => {
 
   const removeLineItem = lineItem => {
     store.removeLineItem(lineItem.id)
-    if (store.checkout.lineItems.length === 1) {
-      context.interface.closeCart()
-    }
   }
 
   const handleChangeVariant = () => {

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdClose } from 'react-icons/md'
+import { Emojione } from 'react-emoji-render'
 
 import LineItem from './LineItem'
 import { withAllContext } from '../../context/AllContext'
@@ -54,6 +55,15 @@ const Title = styled.h2`
   font-family: SarabunBold, sans-serif;
   font-size: 1.5em;
   color: #011523;
+`
+
+const EmptyCart = styled.div`
+  margin-top: 6em;
+
+  p {
+    text-align: center;
+    line-height: 1.4em;
+  }
 `
 
 const Close = styled.button`
@@ -123,6 +133,23 @@ const Cart = props => {
   const { checkout } = store
   const currencySymbol = checkout.currencyCode === 'EUR' ? '€' : '$'
 
+  const renderEmptyCart = () => (
+    <EmptyCart>
+      <p>
+        Your Cart is sad <Emojione text="😔" /> <br />
+        Turn that frown upside down with swag!
+      </p>
+    </EmptyCart>
+  )
+
+  const renderLineItems = () => (
+    <ul>
+      {checkout.lineItems.map(p => (
+        <LineItem product={p} key={p.id} currencySymbol={currencySymbol} />
+      ))}
+    </ul>
+  )
+
   return (
     <Container cartStatus={context.interface.cartStatus}>
       <Overlay adding={store.adding} />
@@ -144,11 +171,7 @@ const Cart = props => {
             </IconContext.Provider>
           </Close>
         </Header>
-        <ul>
-          {checkout.lineItems.map(p => (
-            <LineItem product={p} key={p.id} currencySymbol={currencySymbol} />
-          ))}
-        </ul>
+        {checkout.lineItems.length > 0 ? renderLineItems() : renderEmptyCart()}
       </div>
       {checkout.lineItems.length > 0 && (
         <Footer>

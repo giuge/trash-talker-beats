@@ -15,9 +15,10 @@
 - add variant lease description @done
 - make the filter by tag criteria more strict (allow only for exact match) @done
 - cleanup code @done
-- add empty cart illustration and don't close when empty
+- add empty cart illustration and don't close when empty @done
 - integrate email marketing signup
 - implement related products
 - automatic promo code activation in store state 
+- add social links @done
 - add background waveform @done
-- add cookie banner
+- add cookie banner @done
