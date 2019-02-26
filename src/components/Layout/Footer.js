@@ -2,10 +2,6 @@ import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-import twitterLogo from '../../images/twitter.svg'
-import facebookLogo from '../../images/facebook.svg'
-import instagramLogo from '../../images/instagram.svg'
-
 const Container = styled.footer`
   margin-top: 40px;
   background: none;
