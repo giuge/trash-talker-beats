@@ -1,18 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/shared/Seo'
 import BeatList from '../components/BeatList/'
 import Waveform from '../components/shared/Waveform'
 import getValidBeats from '../utils/products.js'
-
-const Title = styled.h1`
-  text-align: center;
-  margin: 40px 0 72px 0;
-  font-size: 1.5em;
-`
 
 const IndexPage = props => {
   // We need products that have all the required variants and have a preview file
@@ -40,7 +33,6 @@ const IndexPage = props => {
           `ableton`,
         ]}
       />
-      {/* <Title>Get the best produced beats!</Title> */}
       <Waveform />
       <BeatList products={validProducts} {...props} />
     </Layout>

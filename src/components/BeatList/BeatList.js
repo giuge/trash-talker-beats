@@ -8,7 +8,7 @@ import AudioPlayer from '../AudioPlayer'
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 656px;
+  max-width: 960px;
 `
 
 const List = styled.ul`

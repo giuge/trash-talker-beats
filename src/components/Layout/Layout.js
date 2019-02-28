@@ -12,7 +12,34 @@ import GlobalStyle from '../../utils/styles'
 import StoreContextProvider from '../../context/StoreContext'
 import InterfaceContextProvider from '../../context/InterfaceContext'
 
-import SubscribeForm from '../shared/SubscribeForm'
+//import SubscribeForm from '../shared/SubscribeForm'
+
+const MyBanner = styled.div`
+  width: 100%;
+  max-width: 400px;
+  position: fixed;
+  bottom: 16px;
+  right: 24px;
+  right: calc(50% - 200px);
+  background: #b2cde0;
+  color: #011523;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.2em;
+
+  a {
+    font-family: SarabunSemibold, sans-serif;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    max-width: 100%;
+    border-radius: 0;
+    right: 0;
+    bottom: 0;
+  }
+`
 
 const Container = styled.div`
   margin: 0 auto;
@@ -47,19 +74,17 @@ const Layout = props => (
           <Header siteTitle={data.site.siteMetadata.title} />
           <Container>{props.children}</Container>
           {/* <SubscribeForm /> */}
-          <CookieBanner
-            styles={{
-              banner: {
-                backgroundColor: '#0D2B40',
-                position: 'fixed',
-                bottom: 0,
-              },
-              message: { fontFamily: 'SarabunLight, sans-serif' },
-            }}
-            message="We use cookies to guarantee users the employment of its site features, offering a better purchasing experience. By continuing to browse the site you're agreeing to our use of cookies."
-            onAccept={() => {}}
-            cookie="user-has-accepted-cookies"
-          />
+          <CookieBanner>
+            {onAccept => (
+              <MyBanner>
+                <p>
+                  We use cookies to guarantee users the employment of its site
+                  features. By continuing to browse the site you're agreeing to
+                  our use of cookies. <a onClick={onAccept}>Agree</a>.
+                </p>
+              </MyBanner>
+            )}
+          </CookieBanner>
           <Footer />
         </StoreContextProvider>
       </InterfaceContextProvider>

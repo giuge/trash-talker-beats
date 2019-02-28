@@ -92,7 +92,7 @@ class SearchInput extends Component {
               top: '50%',
               right: '-8px',
               transform: 'translate(-50%,-50%)',
-              zIndex: 1000,
+              zIndex: 200,
               opacity: 0.5,
             },
           }}

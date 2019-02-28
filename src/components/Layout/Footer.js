@@ -48,7 +48,7 @@ const Copyright = styled.p`
 `
 
 const SocialLinks = styled.ul`
-  margin: 0 0 2em 0;
+  margin: 1.5em 0 2em 0;
 
   li {
     display: inline-block;
@@ -119,6 +119,9 @@ const Footer = () => {
             </li>
             <li>
               <Link to="/privacy-policy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link to="/refund-policy">Refund Policy</Link>
             </li>
           </Menu>
           <SocialLinks>

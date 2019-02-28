@@ -137,7 +137,7 @@ const Cart = props => {
     <EmptyCart>
       <p>
         Your Cart is sad <Emojione text="😔" /> <br />
-        Turn that frown upside down with swag!
+        Make him happy by adding swag!
       </p>
     </EmptyCart>
   )
