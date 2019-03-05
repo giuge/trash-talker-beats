@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import CookieBanner from 'react-cookie-banner'
 
@@ -16,21 +16,39 @@ import InterfaceContextProvider from '../../context/InterfaceContext'
 
 const MyBanner = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   position: fixed;
   bottom: 16px;
-  right: 24px;
-  right: calc(50% - 200px);
+  right: 16px;
   background: #b2cde0;
   color: #011523;
   padding: 16px;
-  border-radius: 4px;
   font-size: 14px;
   line-height: 1.2em;
 
   a {
     font-family: SarabunSemibold, sans-serif;
+    color: #011523;
     cursor: pointer;
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid black;
+    padding: 0.5em 0;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #011523;
+      color: #b2cde0;
+    }
   }
 
   @media (max-width: 700px) {
@@ -78,10 +96,11 @@ const Layout = props => (
             {onAccept => (
               <MyBanner>
                 <p>
-                  We use cookies to guarantee users the employment of its site
-                  features. By continuing to browse the site you're agreeing to
-                  our use of cookies. <a onClick={onAccept}>Agree</a>.
+                  This website uses cookies to ensure you get the best
+                  experience on our website.
                 </p>
+                <Link to="privacy-policy">Learn more</Link>
+                <button onClick={onAccept}>Got it</button>
               </MyBanner>
             )}
           </CookieBanner>

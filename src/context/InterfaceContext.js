@@ -7,9 +7,6 @@ export default class InterfaceContextProvider extends Component {
     super(props)
 
     this.toggleCart = this.toggleCart.bind(this)
-    this.toggleVariantSelectionModal = this.toggleVariantSelectionModal.bind(
-      this
-    )
     this.selectPreview = this.selectPreview.bind(this)
     this.setPlayerStatus = this.setPlayerStatus.bind(this)
     this.setPlayerVolume = this.setPlayerVolume.bind(this)
@@ -17,6 +14,9 @@ export default class InterfaceContextProvider extends Component {
     this.openCart = this.openCart.bind(this)
     this.closeCart = this.closeCart.bind(this)
     this.stopPlayer = this.stopPlayer.bind(this)
+    this.toggleVariantSelectionModal = this.toggleVariantSelectionModal.bind(
+      this
+    )
 
     this.state = {
       interface: {

@@ -5,6 +5,7 @@ import Layout from '../components/Layout/'
 import SEO from '../components/shared/Seo'
 import BeatList from '../components/BeatList/'
 import Waveform from '../components/shared/Waveform'
+import SignupForm from '../components/shared/SignupForm'
 import getValidBeats from '../utils/products.js'
 
 const IndexPage = props => {
@@ -35,6 +36,7 @@ const IndexPage = props => {
       />
       <Waveform />
       <BeatList products={validProducts} {...props} />
+      <SignupForm />
     </Layout>
   )
 }
