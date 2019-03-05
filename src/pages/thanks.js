@@ -22,7 +22,7 @@ const Container = styled.div`
   }
 `
 
-const NotFoundPage = () => (
+const TanksPage = () => (
   <Layout>
     <SEO title="Thank you for registering" />
     <Container>
@@ -33,4 +33,4 @@ const NotFoundPage = () => (
   </Layout>
 )
 
-export default NotFoundPage
+export default TanksPage
