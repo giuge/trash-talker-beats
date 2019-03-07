@@ -1,0 +1,3 @@
+[[redirects]]
+  from = "/a/downloads/:splat"
+  to = "https://delivery.shopifyapps.com/:splat"
