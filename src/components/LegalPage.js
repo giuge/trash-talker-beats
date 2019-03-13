@@ -4,8 +4,14 @@ import styled from 'styled-components'
 import Layout from './Layout'
 
 const Title = styled.h2`
-  font-size: 1.5em;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 49px;
+  font-size: 38px;
   text-align: center;
+
+  color: #dceaf4;
   margin-bottom: 1.5em;
 `
 
@@ -13,10 +19,12 @@ const Content = styled.div`
   font-size: 1em;
   text-align: left;
   line-height: 1.5em;
+  max-width: 960px;
+  margin: 0 auto;
 `
 
 const Text = styled.p`
-  font-family: SarabunLight, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   margin-bottom: 1em;
   color: #87adc8;
 `

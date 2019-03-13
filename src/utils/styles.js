@@ -1,119 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import fontFiles from './fonts'
-
 const GlobalStyle = createGlobalStyle`
-@font-face { 
-    font-family: "SarabunLight";
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Light"), local("SarabunLight"), url(${
-      fontFiles.SarabunLightTTF
-    }) format("truetype"), url(${fontFiles.SarabunLightWOFF}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunLightItalic"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun LightItalic"), local("SarabunLightItalic"), url(${
-      fontFiles.SarabunLightItalicTTF
-    }) format("truetype"), url(${
-  fontFiles.SarabunLightItalicWOFF
-}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "Sarabun"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Regular"), local("SarabunRegular"), url(${
-      fontFiles.SarabunRegularTTF
-    }) format("truetype"), url(${fontFiles.SarabunRegularWOFF}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunItalic"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Italic"), local("SarabunItalic"), url(${
-      fontFiles.SarabunItalicTTF
-    }) format("truetype"), url(${fontFiles.SarabunItalicWOFF}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunMedium"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Medium"), local("SarabunMedium"), url(${
-      fontFiles.SarabunMediumTTF
-    }) format("truetype"), url(${fontFiles.SarabunMediumWOFF}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunMediumItalic";
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun MediumItalic"), local("SarabunMediumItalic"), url(${
-      fontFiles.SarabunMediumItalicTTF
-    }) format("truetype"), url(${
-  fontFiles.SarabunMediumItalicWOFF
-}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunSemibold";
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Semibold"), local("SarabunSemibold"), url(${
-      fontFiles.SarabunSemiboldTTF
-    }) format("truetype"), url(${
-  fontFiles.SarabunSemiboldWOFF
-}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunSemiboldItalic"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun SemiboldItalic"), local("SarabunSemiboldItalic"), url(${
-      fontFiles.SarabunSemiboldItalicTTF
-    }) format("truetype"), url(${
-  fontFiles.SarabunSemiboldItalicWOFF
-}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunBold";
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun Bold"), local("SarabunBold"), url(${
-      fontFiles.SarabunBoldTTF
-    }) format("truetype"), url(${fontFiles.SarabunBoldWOFF}) format("woff"); 
-}
-
-@font-face { 
-    font-family: "SarabunBoldItalic"; 
-    font-display: fallback;
-    font-style: normal; 
-    font-weight: normal; 
-    src: local("Sarabun BoldItalic"), local("SarabunBoldItalic"), url(${
-      fontFiles.SarabunBoldItalicTTF
-    }) format("truetype"), url(${
-  fontFiles.SarabunBoldItalicWOFF
-}) format("woff"); 
-}
-
-
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -159,14 +46,14 @@ const GlobalStyle = createGlobalStyle`
     }
     html {
         box-sizing: border-box;
-        background: #011523;
+        background: #040F1A;
         color: #DCEAF4;
       }
     *, *:before, *:after {
         box-sizing: inherit;
     }
     body {
-        font-family: Sarabun, sans-serif;
+        font-family: 'Work Sans', sans-serif;
         -webkit-tap-highlight-color: rgba(0,0,0,.05);
     }
     a {
@@ -175,6 +62,13 @@ const GlobalStyle = createGlobalStyle`
     a:visited, a:hover, a:active {
         color: #dceaf4;
     }
+    ::-moz-selection { /* Code for Firefox */
+        background: #FFAA00;
+      }
+      
+      ::selection { 
+        background: #FFAA00;
+      }
 `
 
 export default GlobalStyle

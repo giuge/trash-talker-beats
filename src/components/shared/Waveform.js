@@ -7,7 +7,7 @@ const Container = styled.canvas`
   visibility: ${props => (props.playing ? 'visible' : 'hidden')};
   width: 100%;
   position: absolute;
-  top: 10%;
+  top: 22%;
   left: 0;
   height: 200px;
   z-index: -10;

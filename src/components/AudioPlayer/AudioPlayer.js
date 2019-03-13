@@ -8,23 +8,43 @@ import VolumeController from './VolumeController'
 import Scrubber from './Scrubber'
 
 const Container = styled.div`
-  background: #dceaf4;
-  display: flex;
+  background: rgba(26, 37, 48, 0.99);
   color: #011523;
-  font-family: SarabunBold, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 8px 16px 8px;
+  padding: 8px 16px;
   height: 64px;
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  transition: transform 0.75s;
+  display: flex;
+
+  visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  transform: ${props => (props.show ? 'translateY(0%)' : 'translateY(100%)')};
 `
 
-const NowPlaying = styled.small`
-  font-size: 10px;
-  color: #99a9b5;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 4px;
+const Details = styled.div`
+  flex-flow: row;
+  display: flex;
+  align-items: center;
+  flex: 2;
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-right: 1em;
+  }
+
+  h2 {
+    font-family: Work Sans;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ffffff;
+  }
 `
 
 class AudioPlayer extends Component {
@@ -61,14 +81,22 @@ class AudioPlayer extends Component {
       setPlayerStatus,
     } = this.props.context.interface
 
+    const imgSource = previewFile.images
+      ? previewFile.images[0].localFile.childImageSharp.fixed.src
+      : null
+
     return (
-      <Container>
-        <div style={{ width: '40%' }}>
-          <NowPlaying>Now Playing</NowPlaying>
+      <Container show={Object.keys(previewFile).length > 0}>
+        <Scrubber
+          position={this.state.position}
+          callback={p => this.handleCallback(p)}
+        />
+        <Details>
+          <img src={imgSource} alt={previewFile.title} />
           <h2>
             {previewFile.title ? `${previewFile.title}` : 'No track selected'}
           </h2>
-        </div>
+        </Details>
         <div>
           <Sound
             url={previewFile.preview ? previewFile.preview.publicURL : ''}
@@ -90,11 +118,9 @@ class AudioPlayer extends Component {
           />
           <PlayPauseButton />
         </div>
-        <VolumeController />
-        <Scrubber
-          position={this.state.position}
-          callback={p => this.handleCallback(p)}
-        />
+        <div style={{ flex: '2', textAlign: 'right' }}>
+          <VolumeController />
+        </div>
       </Container>
     )
   }

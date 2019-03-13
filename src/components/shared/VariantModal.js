@@ -74,7 +74,7 @@ const Variant = styled.li`
 
 const VariantTitle = styled.small`
   display: block;
-  font-family: SarabunMedium, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 0.65em;
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -83,7 +83,7 @@ const VariantTitle = styled.small`
 `
 
 const VariantDescription = styled.p`
-  font-family: SarabunMedium, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 0.85em;
   margin: 16px 0 0 0;
   text-transform: uppercase;
@@ -91,7 +91,7 @@ const VariantDescription = styled.p`
 `
 
 const VariantPrice = styled.h3`
-  font-family: SarabunBold, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1.8em;
   margin-top: 0.5em;
 `
@@ -141,7 +141,7 @@ const TrackInfo = styled.div`
   }
 
   h2 {
-    font-family: SarabunMedium, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1.5em;
   }
 `
@@ -150,7 +150,7 @@ const TagList = styled.ul`
   margin-top: 8px;
 
   li {
-    font-family: SarabunLight, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     display: inline-block;
     padding: 4px 8px;
     margin: 4px;

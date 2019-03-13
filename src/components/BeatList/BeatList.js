@@ -4,16 +4,17 @@ import styled from 'styled-components'
 import { withAllContext } from '../../context/AllContext'
 import Product from './Beat'
 import SearchInput from './SearchInput'
-import AudioPlayer from '../AudioPlayer'
 
 const Container = styled.div`
-  margin: 0 auto;
+  margin: 32px auto 0 auto;
   max-width: 960px;
+  background: #0a1723;
+  border-radius: 4px;
+  padding-bottom: 4px;
 `
 
 const List = styled.ul`
   width: 100%;
-  background: #0d2b40;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -22,7 +23,6 @@ const List = styled.ul`
 
   &::-webkit-scrollbar {
     width: 10px;
-    background: #0d2b40;
   }
 
   &::-webkit-scrollbar-track {
@@ -92,7 +92,6 @@ class ProductsList extends Component {
     return (
       <Container>
         <SearchInput />
-        <AudioPlayer />
         <List>{this.renderProducts()}</List>
       </Container>
     )

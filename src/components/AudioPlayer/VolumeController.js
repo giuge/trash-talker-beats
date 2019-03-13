@@ -14,6 +14,7 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  float: right;
 `
 
 const SliderContainer = styled.div`
@@ -40,7 +41,7 @@ const VolumeController = props => {
       <IconContext.Provider
         value={{
           size: 18,
-          color: '#39617D',
+          color: '#DCEAF4',
           style: {
             display: 'block',
             marginRight: 8,
@@ -70,7 +71,7 @@ const VolumeController = props => {
             borderRadius: 0,
             position: 'absolute',
             top: 0,
-            backgroundColor: '#39617D',
+            backgroundColor: '#DCEAF4',
             height: 8,
             zIndex: 10,
           }}
@@ -79,7 +80,7 @@ const VolumeController = props => {
             position: 'absolute',
             top: 0,
             left: 0,
-            backgroundColor: '#B8CFDF',
+            backgroundColor: '#596678',
             height: 8,
             zIndex: 0,
           }}

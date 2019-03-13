@@ -30,7 +30,7 @@ const Details = styled.div`
 
 const Description = styled.div`
   p {
-    font-family: SarabunMedium, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     color: #011523;
   }
 
@@ -47,7 +47,7 @@ const Price = styled.div`
   display: flex;
 
   p {
-    font-family: SarabunMedium, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     line-height: 20px;
     margin-right: 8px;
     font-size: 0.85em;

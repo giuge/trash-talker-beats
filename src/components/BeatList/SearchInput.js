@@ -11,7 +11,6 @@ const TagContainer = styled.div`
   padding: 8px 8px;
   font-size: 14px;
   border-radius: 2px;
-  background: #dceaf4;
   color: #011523;
   cursor: pointer;
   display: inline-block;
@@ -90,7 +89,7 @@ class SearchInput extends Component {
             style: {
               position: 'absolute',
               top: '50%',
-              right: '-8px',
+              right: '0',
               transform: 'translate(-50%,-50%)',
               zIndex: 200,
               opacity: 0.5,

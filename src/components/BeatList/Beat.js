@@ -9,8 +9,8 @@ import { withAllContext } from '../../context/AllContext'
 const ListItem = styled.li`
   display: flex;
   width: 100%;
-  height: 48px;
-  min-height: 48px;
+  height: 64px;
+  min-height: 64px;
   align-items: center;
   justify-content: space-between;
   transition: all 0.1s ease-in;
@@ -18,7 +18,8 @@ const ListItem = styled.li`
   cursor: pointer;
   background: ${props => (props.highlighted ? '#011523' : 'transparent')};
   color: ${props => (props.highlighted ? '#DCEAF4' : '#DCEAF4')};
-  border-bottom: 1px solid #193a50;
+  border-bottom: 1px solid #122434;
+  padding: 8px 16px;
 
   div > div > div {
     opacity: 0;
@@ -26,7 +27,7 @@ const ListItem = styled.li`
 
   &:hover {
     transition: all 0.1s ease-out;
-    background: ${props => (props.highlighted ? '#011523' : '#15354C')};
+    background: #011523;
 
     div > div > div {
       opacity: ${props => (props.highlighted ? '0' : '1')};
@@ -42,14 +43,24 @@ const Details = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  font-size: 16px;
   cursor: pointer;
-  height: 48px;
+
+  h3 {
+    font-family: Work Sans;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  color: #dceaf4;
 `
 
 const ImageContainer = styled.div`
   position: relative;
   height: 48px;
+
+  img {
+    border-radius: 4px;
+  }
 
   svg {
     position: absolute;
@@ -83,7 +94,6 @@ const AddToCart = styled.button`
   text-transform: uppercase;
   border: none;
   padding: 8px 8px 8px 28px;
-  margin-right: 8px;
   cursor: pointer;
   position: relative;
   transition: all 0.1s ease-in;
@@ -110,8 +120,15 @@ const Tags = styled.ul`
       margin-left: 0;
     }
 
+    font-family: Source Code Pro;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 14px;
+    color: #dceaf4;
+    opacity: 0.2;
+
     display: inline-block;
-    color: #39617d;
     margin: 0 4px;
     border-radius: 4px;
   }
@@ -124,7 +141,6 @@ const InCart = styled.button`
   text-transform: uppercase;
   border: none;
   padding: 8px;
-  margin-right: 8px;
   cursor: pointer;
   position: relative;
   outline: none;
@@ -137,9 +153,7 @@ const InCart = styled.button`
 
 const Product = props => {
   const { beat, context } = props
-  const image = beat.images[0]
-    ? beat.images[0].localFile.childImageSharp.fixed.src
-    : null
+  const image = beat ? beat.images[0].localFile.childImageSharp.fixed.src : null
 
   const handleClick = () => {
     context.interface.selectPreview(beat)

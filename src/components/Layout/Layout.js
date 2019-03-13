@@ -8,6 +8,7 @@ import Header from './Header'
 import Footer from './Footer'
 import Cart from '../Cart/Cart'
 import VariantModal from '../shared/VariantModal'
+import AudioPlayer from '../AudioPlayer'
 import GlobalStyle from '../../utils/styles'
 import StoreContextProvider from '../../context/StoreContext'
 import InterfaceContextProvider from '../../context/InterfaceContext'
@@ -27,7 +28,7 @@ const MyBanner = styled.div`
   line-height: 1.2em;
 
   a {
-    font-family: SarabunSemibold, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     color: #011523;
     cursor: pointer;
     display: block;
@@ -61,8 +62,7 @@ const MyBanner = styled.div`
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 960px;
-  padding: 0px 40px;
+  padding: 40px;
   padding-top: 0;
 
   @media (max-width: 700px) {
@@ -104,6 +104,7 @@ const Layout = props => (
               </MyBanner>
             )}
           </CookieBanner>
+          <AudioPlayer />
           <Footer />
         </StoreContextProvider>
       </InterfaceContextProvider>

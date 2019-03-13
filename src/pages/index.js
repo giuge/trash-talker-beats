@@ -1,12 +1,37 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/shared/Seo'
 import BeatList from '../components/BeatList/'
-import Waveform from '../components/shared/Waveform'
+import LatestBeats from '../components/LatestBeats/'
 import SignupForm from '../components/shared/SignupForm'
 import getValidBeats from '../utils/products.js'
+
+const Title = styled.h1`
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 49px;
+  font-size: 38px;
+  text-align: center;
+
+  color: #dceaf4;
+
+  @media (max-width: 700px) {
+    br {
+      display: none;
+    }
+  }
+`
+
+const BeatListContainer = styled.div`
+  margin-top: 80px;
+  background: #0d2b40;
+  padding-top: 40px;
+  padding-bottom: 56px;
+`
 
 const IndexPage = props => {
   // We need products that have all the required variants and have a preview file
@@ -34,8 +59,15 @@ const IndexPage = props => {
           `ableton`,
         ]}
       />
-      <Waveform />
-      <BeatList products={validProducts} {...props} />
+      <Title>
+        Handcrafted quality beats <br />
+        for your next song
+      </Title>
+      <LatestBeats products={validProducts.slice(0, 3)} />
+      <BeatListContainer>
+        <Title>All Beats</Title>
+        <BeatList products={validProducts} {...props} />
+      </BeatListContainer>
       <SignupForm />
     </Layout>
   )
@@ -56,7 +88,7 @@ export const query = graphql`
             images {
               localFile {
                 childImageSharp {
-                  fixed(width: 300, height: 300) {
+                  fixed(width: 500, height: 500) {
                     ...GatsbyImageSharpFixed
                   }
                 }

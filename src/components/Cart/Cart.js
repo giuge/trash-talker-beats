@@ -52,7 +52,7 @@ const Header = styled.header`
 `
 
 const Title = styled.h2`
-  font-family: SarabunBold, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1.5em;
   color: #011523;
 `
@@ -86,7 +86,7 @@ const Checkout = styled.a`
   text-align: center;
   border-radius: 4px;
   fonr-size: 1.25em;
-  font-family: SarabunSemiBold, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   transition: all 0.75s;
   color: #011523;
 
@@ -116,13 +116,13 @@ const Total = styled.div`
   align-self: normal;
 
   h4 {
-    font-family: SarabunBold, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 0.85em;
     text-transform: uppercase;
   }
 
   p {
-    font-family: SarabunMedium, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1em;
   }
 `

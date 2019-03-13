@@ -5,7 +5,7 @@ const Container = styled.div`
   width: 100%;
   height: 5px;
   position: absolute;
-  bottom: 0;
+  top: -5px;
   left: 0;
   cursor: pointer;
   transition: height 0.2s;

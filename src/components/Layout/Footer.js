@@ -5,8 +5,8 @@ import styled from 'styled-components'
 const Container = styled.footer`
   margin-top: 40px;
   background: none;
-  padding: 24px 40px;
-  font-family: SarabunLight, sans-serif;
+  padding: 24px 40px 96px 40px;
+  font-family: 'Work Sans', sans-serif;
   font-size: 14px;
   text-align: center;
 

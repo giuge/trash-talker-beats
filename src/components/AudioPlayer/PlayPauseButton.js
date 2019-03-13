@@ -11,7 +11,7 @@ const Container = styled.div`
   width: 48px;
   height: 48px;
   text-align: center;
-  background: #39617d;
+  background: transparent;
   border-radius: 100px;
   transform-style: preserve-3d;
   cursor: pointer;
