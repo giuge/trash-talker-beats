@@ -91,6 +91,7 @@ const Layout = props => (
           <Cart />
           <Header siteTitle={data.site.siteMetadata.title} />
           <Container>{props.children}</Container>
+          <AudioPlayer />
           {/* <SubscribeForm /> */}
           <CookieBanner>
             {onAccept => (
@@ -104,7 +105,6 @@ const Layout = props => (
               </MyBanner>
             )}
           </CookieBanner>
-          <AudioPlayer />
           <Footer />
         </StoreContextProvider>
       </InterfaceContextProvider>
