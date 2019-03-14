@@ -12,7 +12,7 @@ const Container = styled.div`
     props.cartStatus === 'open' ? 'translateX(0%)' : 'translateX(100%)'};
   position: fixed;
   padding: 24px;
-  width: 25%;
+  width: 400px;
   right: 0;
   top: 0;
   background: #dceaf4;
@@ -55,6 +55,7 @@ const Title = styled.h2`
   font-family: 'Work Sans', sans-serif;
   font-size: 1.5em;
   color: #011523;
+  font-weight: 600;
 `
 
 const EmptyCart = styled.div`
@@ -96,6 +97,7 @@ const Checkout = styled.a`
 
   :hover {
     background: #feca30;
+    color: #011523;
   }
 `
 
@@ -122,8 +124,9 @@ const Total = styled.div`
   }
 
   p {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Source Code Pro', sans-serif;
     font-size: 1em;
+    font-weight: 600;
   }
 `
 
@@ -178,7 +181,8 @@ const Cart = props => {
           <Total>
             <h4>Total price</h4>
             <p>
-              {checkout.paymentDue} {currencySymbol}
+              {checkout.paymentDue}
+              {currencySymbol}
             </p>
           </Total>
           <Checkout href={checkout.webUrl}>Check out</Checkout>

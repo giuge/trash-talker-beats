@@ -16,7 +16,7 @@ const ListItem = styled.li`
   transition: all 0.1s ease-in;
   overflow: hidden;
   cursor: pointer;
-  background: ${props => (props.highlighted ? '#011523' : 'transparent')};
+  background: ${props => (props.highlighted ? '#091F30' : 'transparent')};
   color: ${props => (props.highlighted ? '#DCEAF4' : '#DCEAF4')};
   border-bottom: 1px solid #122434;
   padding: 8px 16px;
@@ -27,7 +27,7 @@ const ListItem = styled.li`
 
   &:hover {
     transition: all 0.1s ease-out;
-    background: #011523;
+    background: #091f30;
 
     div > div > div {
       opacity: ${props => (props.highlighted ? '0' : '1')};
@@ -131,6 +131,10 @@ const Tags = styled.ul`
     display: inline-block;
     margin: 0 4px;
     border-radius: 4px;
+  }
+
+  @media (max-width: 700px) {
+    display: none;
   }
 `
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
 import styled from 'styled-components'
+import { MdShoppingCart } from 'react-icons/md'
 
-import { withInterfaceContext } from '../../context/InterfaceContext'
+import { withAllContext } from '../../context/AllContext'
 import PlayPauseButton from './PlayPauseButton'
 import VolumeController from './VolumeController'
 import Scrubber from './Scrubber'
@@ -18,7 +19,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 999;
   transition: transform 0.75s;
   display: flex;
 
@@ -38,12 +39,56 @@ const Details = styled.div`
     border-radius: 24px;
     margin-right: 1em;
   }
+`
 
+const BeatInfo = styled.div`
   h2 {
     font-family: Work Sans;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     color: #ffffff;
+    margin-bottom: 2px;
+  }
+
+  span {
+    font-size: 12px;
+    color: #8e969c;
+    margin-right: 0.5em;
+  }
+`
+
+const AddToCart = styled.button`
+  background: #183a53;
+  border-radius: 4px;
+  color: #b8cfdf;
+  text-transform: uppercase;
+  border: none;
+  padding: 8px 8px 8px 28px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s ease-in;
+  outline: none;
+  margin-left: 2em;
+
+  svg {
+    position: absolute;
+    left: 8px;
+  }
+
+  &:hover,
+  &:visited {
+    transition: background 0.1s ease-in;
+    background: #ffaa00;
+    color: #011523;
+  }
+`
+
+const VolumeControllerContainer = styled.div`
+  flex: 2;
+  text-align: right;
+
+  @media (max-width: 700px) {
+    display: none;
   }
 `
 
@@ -64,6 +109,20 @@ class AudioPlayer extends Component {
     }))
   }
 
+  addToCart(e) {
+    const { previewFile, selectVariant } = this.props.context.interface
+
+    e.stopPropagation()
+    selectVariant(previewFile)
+  }
+
+  handleFinishedPlaying() {
+    const { setPlayerStatus, selectPreview } = this.props.context.interface
+    this.setState({ position: {}, seekPosition: 0 })
+    selectPreview()
+    setPlayerStatus('STOPPED')
+  }
+
   componentDidMount() {
     if (window && !!window.soundManager) {
       window.soundManager.setup({
@@ -81,6 +140,8 @@ class AudioPlayer extends Component {
       setPlayerStatus,
     } = this.props.context.interface
 
+    const { adding } = this.props.context.store
+
     const imgSource = previewFile.images
       ? previewFile.images[0].localFile.childImageSharp.fixed.src
       : null
@@ -93,14 +154,22 @@ class AudioPlayer extends Component {
         />
         <Details>
           <img src={imgSource} alt={previewFile.title} />
-          <h2>
-            {previewFile.title ? `${previewFile.title}` : 'No track selected'}
-          </h2>
+          <BeatInfo>
+            <h2>
+              {previewFile.title ? `${previewFile.title}` : 'No track selected'}
+            </h2>
+            {previewFile.tags &&
+              previewFile.tags.map(t => <span key={t}>{`#${t}`}</span>)}
+          </BeatInfo>
+          <AddToCart onClick={e => this.addToCart(e)} disabled={adding}>
+            <MdShoppingCart />
+            BUY
+          </AddToCart>
         </Details>
         <div>
           <Sound
             url={previewFile.preview ? previewFile.preview.publicURL : ''}
-            loop={true}
+            loop={false}
             playStatus={playerStatus}
             volume={playerVolume}
             position={this.state.seekPosition}
@@ -114,16 +183,17 @@ class AudioPlayer extends Component {
                 seekPosition: position.position,
               }))
             }
+            onFinishedPlaying={() => this.handleFinishedPlaying()}
             onStop={() => this.setState({ position: {}, seekPosition: 0 })}
           />
           <PlayPauseButton />
         </div>
-        <div style={{ flex: '2', textAlign: 'right' }}>
+        <VolumeControllerContainer>
           <VolumeController />
-        </div>
+        </VolumeControllerContainer>
       </Container>
     )
   }
 }
 
-export default withInterfaceContext(AudioPlayer)
+export default withAllContext(AudioPlayer)

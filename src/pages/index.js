@@ -6,7 +6,7 @@ import Layout from '../components/Layout/'
 import SEO from '../components/shared/Seo'
 import BeatList from '../components/BeatList/'
 import LatestBeats from '../components/LatestBeats/'
-import SignupForm from '../components/shared/SignupForm'
+import LicensingOptions from '../components/LicensingOptions'
 import getValidBeats from '../utils/products.js'
 
 const Title = styled.h1`
@@ -26,11 +26,22 @@ const Title = styled.h1`
   }
 `
 
-const BeatListContainer = styled.div`
+const Container = styled.div`
+  padding: 40px;
+
+  @media (max-width: 700px) {
+    padding: 40px 16px;
+  }
+`
+
+const BeatListContainer = styled(Container)`
   margin-top: 80px;
   background: #0d2b40;
-  padding-top: 40px;
-  padding-bottom: 56px;
+  padding: 40px 40px 56px 40px;
+`
+
+const LicensingTitle = styled(Title)`
+  padding: 40px 40px 56px 40px;
 `
 
 const IndexPage = props => {
@@ -59,16 +70,23 @@ const IndexPage = props => {
           `ableton`,
         ]}
       />
-      <Title>
-        Handcrafted quality beats <br />
-        for your next song
-      </Title>
-      <LatestBeats products={validProducts.slice(0, 3)} />
+      <Container>
+        <Title>
+          Handcrafted quality beats <br />
+          for your next song
+        </Title>
+      </Container>
+      <Container>
+        <LatestBeats products={validProducts.slice(0, 3)} />
+      </Container>
       <BeatListContainer>
         <Title>All Beats</Title>
         <BeatList products={validProducts} {...props} />
       </BeatListContainer>
-      <SignupForm />
+      <Container>
+        <LicensingTitle>Licensing options</LicensingTitle>
+        <LicensingOptions />
+      </Container>
     </Layout>
   )
 }

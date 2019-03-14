@@ -43,6 +43,11 @@ const Menu = styled.ul`
 `
 
 const Copyright = styled.p`
+  margin: 1em 0;
+  opacity: 0.5;
+`
+
+const VAT = styled.p`
   margin: 1em 0 2em 0;
   opacity: 0.5;
 `
@@ -142,16 +147,17 @@ const Footer = () => {
             </li>
           </SocialLinks>
           <Copyright>
-            © {new Date().getFullYear()} - Made with love by
-            {` `}
+            © {new Date().getFullYear()} - {` `}
             <a
               href="http://andshape.com"
               rel="noopener noreferrer"
               target="_blank"
             >
-              Andshape
-            </a>
+              Andshape SRL
+            </a>{' '}
+            - VAT ID: IT11874050013
           </Copyright>
+          <VAT />
         </Container>
       )}
     />

@@ -93,6 +93,7 @@ const VariantDescription = styled.p`
 const VariantPrice = styled.h3`
   font-family: 'Work Sans', sans-serif;
   font-size: 1.8em;
+  font-weight: 600;
   margin-top: 0.5em;
 `
 
@@ -143,6 +144,7 @@ const TrackInfo = styled.div`
   h2 {
     font-family: 'Work Sans', sans-serif;
     font-size: 1.5em;
+    font-weight: 600;
   }
 `
 

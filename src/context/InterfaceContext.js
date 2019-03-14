@@ -130,7 +130,7 @@ export default class InterfaceContextProvider extends Component {
       interface: {
         ...state.interface,
         playerStatus: 'PLAYING',
-        previewFile,
+        previewFile: previewFile ? previewFile : {},
       },
     }))
   }

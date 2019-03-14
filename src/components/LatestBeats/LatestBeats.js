@@ -8,7 +8,7 @@ import Vinyl from './Vinyl'
 const Container = styled.div`
   width: 100%;
   max-width: 960px;
-  margin: 80px auto 124px auto;
+  margin: 0px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

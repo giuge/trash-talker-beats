@@ -4,12 +4,12 @@ import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import CookieBanner from 'react-cookie-banner'
 
+import GlobalStyle from '../../utils/styles'
 import Header from './Header'
 import Footer from './Footer'
 import Cart from '../Cart/Cart'
 import VariantModal from '../shared/VariantModal'
 import AudioPlayer from '../AudioPlayer'
-import GlobalStyle from '../../utils/styles'
 import StoreContextProvider from '../../context/StoreContext'
 import InterfaceContextProvider from '../../context/InterfaceContext'
 
@@ -62,12 +62,7 @@ const MyBanner = styled.div`
 
 const Container = styled.div`
   margin: 0 auto;
-  padding: 40px;
   padding-top: 0;
-
-  @media (max-width: 700px) {
-    padding: 0px 16px;
-  }
 `
 
 const siteTitleQuery = graphql`
@@ -84,30 +79,32 @@ const Layout = props => (
   <StaticQuery
     query={siteTitleQuery}
     render={data => (
-      <InterfaceContextProvider>
-        <StoreContextProvider>
-          <GlobalStyle />
-          <VariantModal />
-          <Cart />
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <Container>{props.children}</Container>
-          <AudioPlayer />
-          {/* <SubscribeForm /> */}
-          <CookieBanner>
-            {onAccept => (
-              <MyBanner>
-                <p>
-                  This website uses cookies to ensure you get the best
-                  experience on our website.
-                </p>
-                <Link to="privacy-policy">Learn more</Link>
-                <button onClick={onAccept}>Got it</button>
-              </MyBanner>
-            )}
-          </CookieBanner>
-          <Footer />
-        </StoreContextProvider>
-      </InterfaceContextProvider>
+      <>
+        <GlobalStyle />
+        <InterfaceContextProvider>
+          <StoreContextProvider>
+            <VariantModal />
+            <Cart />
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <Container>{props.children}</Container>
+            <AudioPlayer />
+            {/* <SubscribeForm /> */}
+            <CookieBanner>
+              {onAccept => (
+                <MyBanner>
+                  <p>
+                    This website uses cookies to ensure you get the best
+                    experience on our website.
+                  </p>
+                  <Link to="privacy-policy">Learn more</Link>
+                  <button onClick={onAccept}>Got it</button>
+                </MyBanner>
+              )}
+            </CookieBanner>
+            <Footer />
+          </StoreContextProvider>
+        </InterfaceContextProvider>
+      </>
     )}
   />
 )

@@ -7,14 +7,14 @@ import { withAllContext } from '../../context/AllContext'
 
 const Container = styled.li`
   margin: 0;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
+  // padding: 8px;
+  // background: rgba(255, 255, 255, 0.5);
+  // border-radius: 4px;
 `
 
 const Image = styled.img`
@@ -32,6 +32,7 @@ const Description = styled.div`
   p {
     font-family: 'Work Sans', sans-serif;
     color: #011523;
+    font-weight: 600;
   }
 
   small {
@@ -47,10 +48,11 @@ const Price = styled.div`
   display: flex;
 
   p {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Source Code Pro', sans-serif;
     line-height: 20px;
     margin-right: 8px;
     font-size: 0.85em;
+    font-weight: 600;
   }
 
   svg {
@@ -110,7 +112,8 @@ const LineItem = ({ context, product, currencySymbol }) => {
       </Details>
       <Price>
         <p>
-          {product.variant.price} {currencySymbol}
+          {product.variant.price}
+          {currencySymbol}
         </p>
         <IconContext.Provider
           value={{
