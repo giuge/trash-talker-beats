@@ -46,9 +46,9 @@ const LicensingTitle = styled(Title)`
 
 const IndexPage = props => {
   // We need products that have all the required variants and have a preview file
-  const { products } = props.data.allShopifyCollection.edges[0].node
+  const beatsCollections = props.data.allShopifyCollection.edges
   const previews = props.data.allFile.edges
-  const validProducts = getValidBeats(products, previews)
+  const validProducts = getValidBeats(beatsCollections, previews)
 
   return (
     <Layout>
@@ -93,9 +93,10 @@ const IndexPage = props => {
 
 export const query = graphql`
   {
-    allShopifyCollection(filter: { handle: { eq: "beats" } }) {
+    allShopifyCollection(filter: { handle: { regex: "/^beats/" } }) {
       edges {
         node {
+          handle
           products {
             id
             shopifyId

@@ -22,3 +22,5 @@
 - add social links @done
 - add background waveform @done
 - add cookie banner @done
+- update components to use React hooks
+- integrate products genres and filter @done

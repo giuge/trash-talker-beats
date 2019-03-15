@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { withAllContext } from '../../context/AllContext'
 import Product from './Beat'
-import SearchInput from './SearchInput'
 
 const Container = styled.div`
   margin: 32px auto 0 auto;
@@ -47,42 +46,104 @@ const EmptyText = styled.p`
   line-height: 140%;
 `
 
-class ProductsList extends Component {
-  componentDidMount() {
-    const { context, products } = this.props
-    const { search } = context.store
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #122434;
+`
 
-    context.store.updateProducts(products)
-    search.updateSuggestions()
-    search.filterProducts()
+const SearchInput = styled.input`
+  font-size: 18px;
+  line-height: 18px;
+  display: block;
+  padding: 24px 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #dceaf4;
+
+  &::placeholder {
+    color: rgba(220, 234, 244, 0.2);
+  }
+`
+const GenreSelector = styled.select`
+  min-width: 96px;
+  text-indent: 4px;
+  height: 32px;
+  margin-right: 2em;
+  background: rgba(220, 234, 244, 0.2);
+  color: #0a1723;
+  text-transform: capitalize;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+
+  option: {
+    color: #0a1723;
+  }
+`
+
+class ProductsList extends Component {
+  constructor(props) {
+    super(props)
+
+    const allGenres = this.props.products.map(p => p.genre)
+    const genres = allGenres.filter((v, i) => allGenres.indexOf(v) === i)
+
+    this.state = {
+      serchResults: [],
+      searchTerm: '',
+      genres,
+    }
   }
 
-  componentDidUpdate(prevProps) {
-    const { context } = this.props
-    const { search } = context.store
+  componentDidMount() {
+    const { context, products } = this.props
+    context.store.updateProducts(products)
+  }
 
-    if (
-      prevProps.context.store.search.tags.length !==
-      context.store.search.tags.length
-    ) {
-      search.filterProducts()
-    }
+  getProductsToFilter() {
+    const { searchResults } = this.state
+    const { products } = this.props.context.store
+    return searchResults && searchResults.length > 0 ? searchResults : products
+  }
+
+  handleChange(e) {
+    const searchTerm = e.target.value
+
+    this.setState({
+      serchResults: this.getProductsToFilter().filter(r =>
+        r.title.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+      searchTerm,
+    })
+  }
+
+  handleSelectChange(e) {
+    const searchTerm = e.target.value.toLowerCase()
+
+    this.setState({
+      serchResults:
+        searchTerm !== 'All genres'
+          ? this.getProductsToFilter().filter(r =>
+              r.genre.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+          : [],
+      searchTerm: '',
+    })
   }
 
   renderProducts() {
     const { context } = this.props
     const { products } = context.store
-    const { filteredProducts, tags } = context.store.search
-    const productsToUse = tags.length !== 0 ? filteredProducts : products
+    const { serchResults, searchTerm } = this.state
+    const productsToUse = serchResults.length !== 0 ? serchResults : products
 
-    if (tags.length === 0) {
-      if (products.length === 0) {
-        return <EmptyText>No products in store</EmptyText>
-      }
-    } else {
-      if (filteredProducts.length === 0) {
-        return <EmptyText>No product matches your criteria</EmptyText>
-      }
+    if (products.length === 0) {
+      return <EmptyText>No products in store</EmptyText>
+    } else if (serchResults.length === 0 && searchTerm) {
+      return <EmptyText>No product matches your criteria</EmptyText>
     }
 
     return productsToUse.map(p => <Product beat={p} key={p.id} />)
@@ -91,7 +152,24 @@ class ProductsList extends Component {
   render() {
     return (
       <Container>
-        <SearchInput />
+        <Header>
+          <SearchInput
+            type="text"
+            onChange={e => this.handleChange(e)}
+            value={this.state.searchTerm}
+            placeholder="Search beats"
+          />
+          <GenreSelector
+            defaultValue="Genre"
+            onChange={e => this.handleSelectChange(e)}
+          >
+            <option disabled>Genre</option>
+            {this.state.genres.map(g => (
+              <option key={g}>{g}</option>
+            ))}
+            <option>All genres</option>
+          </GenreSelector>
+        </Header>
         <List>{this.renderProducts()}</List>
       </Container>
     )

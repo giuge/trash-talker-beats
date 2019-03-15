@@ -6,9 +6,9 @@ import BeatDetails from './BeatDetails'
 import getValidBeats from '../../utils/products.js'
 
 const BeatPage = props => {
-  const { products } = props.data.allShopifyCollection.edges[0].node
+  const beatsCollections = props.data.allShopifyCollection.edges
   const previews = props.data.allFile.edges
-  const validProducts = getValidBeats(products, previews)
+  const validProducts = getValidBeats(beatsCollections, previews)
 
   return (
     <Layout>
@@ -19,9 +19,10 @@ const BeatPage = props => {
 
 export const query = graphql`
   {
-    allShopifyCollection(filter: { handle: { eq: "beats" } }) {
+    allShopifyCollection(filter: { handle: { regex: "/^beats/" } }) {
       edges {
         node {
+          handle
           products {
             id
             shopifyId
@@ -32,7 +33,7 @@ export const query = graphql`
             images {
               localFile {
                 childImageSharp {
-                  fixed(width: 300, height: 300) {
+                  fixed(width: 500, height: 500) {
                     ...GatsbyImageSharpFixed
                   }
                 }

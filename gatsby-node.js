@@ -21,9 +21,10 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allShopifyCollection(filter: { handle: { eq: "beats" } }) {
+      allShopifyCollection(filter: { handle: { regex: "/^beats/" } }) {
         edges {
           node {
+            handle
             products {
               id
               shopifyId
@@ -77,9 +78,9 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   // Create beat pages
-  const { products } = allPages.data.allShopifyCollection.edges[0].node
+  const beatsCollections = allPages.data.allShopifyCollection.edges
   const previews = allPages.data.allFile.edges
-  const validBeats = getValidBeats(products, previews)
+  const validBeats = getValidBeats(beatsCollections, previews)
 
   validBeats.forEach(beat => {
     createPage({

@@ -10,11 +10,6 @@ const Container = styled.div`
   margin: 0 auto;
   text-align: center;
 
-  h1 {
-    font-size: 1.5em;
-    margin-bottom: 1.5em;
-  }
-
   a {
     display: block;
     margin-top: 1em;
@@ -22,11 +17,23 @@ const Container = styled.div`
   }
 `
 
+const Title = styled.h1`
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 49px;
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 1.5em;
+
+  color: #dceaf4;
+`
+
 const TanksPage = () => (
   <Layout>
     <SEO title="Thank you for registering" />
     <Container>
-      <h1>Thank you!</h1>
+      <Title>Thank you!</Title>
       <p>Your email has been submitted succesfully!</p>
       <Link to="/">Go to the homepage</Link>
     </Container>

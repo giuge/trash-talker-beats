@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdClose } from 'react-icons/md'
 import { Emojione } from 'react-emoji-render'
 
 import LineItem from './LineItem'
-import { withAllContext } from '../../context/AllContext'
+import { StoreContext } from '../../context/StoreContext'
+import { InterfaceContext } from '../../context/InterfaceContext'
 
 const Container = styled.div`
   transform: ${props =>
@@ -130,9 +131,10 @@ const Total = styled.div`
   }
 `
 
-const Cart = props => {
-  const { context } = props
-  const { store } = context
+const Cart = () => {
+  const storeContext = useContext(StoreContext)
+  const interfaceContext = useContext(InterfaceContext)
+  const { store } = storeContext
   const { checkout } = store
   const currencySymbol = checkout.currencyCode === 'EUR' ? '€' : '$'
 
@@ -154,12 +156,12 @@ const Cart = props => {
   )
 
   return (
-    <Container cartStatus={context.interface.cartStatus}>
+    <Container cartStatus={interfaceContext.interface.cartStatus}>
       <Overlay adding={store.adding} />
       <div>
         <Header>
           <Title>Your Cart</Title>
-          <Close onClick={() => context.interface.toggleCart()}>
+          <Close onClick={() => interfaceContext.interface.toggleCart()}>
             <IconContext.Provider
               value={{
                 size: 16,
@@ -192,4 +194,4 @@ const Cart = props => {
   )
 }
 
-export default withAllContext(Cart)
+export default Cart

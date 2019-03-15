@@ -23,21 +23,19 @@ export default class HTML extends React.Component {
           />
           {this.props.postBodyComponents}
           <script
-            type="text/javascript"
-            src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js"
-            data-dojo-config="usePlainJson: true, isDebug: false"
-          />
-          <script
             dangerouslySetInnerHTML={{
               __html: `
-                window.dojoRequire(["mojo/signup-forms/Loader"], function(L)
-                {L.start({
-                  baseUrl: 'mc.us20.list-manage.com',
-                  uuid: 'e647a49a4a0843b67c424df64',
-                  lid: 'd9766b56bf',
-                  uniqueMethods: true,
-                })}
-                )
+              var _dcq = _dcq || [];
+              var _dcs = _dcs || {};
+              _dcs.account = '9184531';
+            
+              (function() {
+                var dc = document.createElement('script');
+                dc.type = 'text/javascript'; dc.async = true;
+                dc.src = '//tag.getdrip.com/9184531.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(dc, s);
+              })();
               `,
             }}
           />
