@@ -3,6 +3,14 @@ import styled from 'styled-components'
 
 import Layout from './Layout'
 
+const Container = styled.div`
+  padding: 40px;
+
+  @media (max-width: 700px) {
+    padding: 40px 16px;
+  }
+`
+
 const Title = styled.h2`
   font-family: Work Sans;
   font-style: normal;
@@ -42,15 +50,17 @@ const PolicyPage = ({ pageContext }) => {
 
   return (
     <Layout>
-      <Title>{pageContext.title}</Title>
-      <Content>
-        {paragraphs.map((p, i) => {
-          if (p.toUpperCase() === p) {
-            return <TextTitle key={i}>{p}</TextTitle>
-          }
-          return <Text key={i}>{p}</Text>
-        })}
-      </Content>
+      <Container>
+        <Title>{pageContext.title}</Title>
+        <Content>
+          {paragraphs.map((p, i) => {
+            if (p.toUpperCase() === p) {
+              return <TextTitle key={i}>{p}</TextTitle>
+            }
+            return <Text key={i}>{p}</Text>
+          })}
+        </Content>
+      </Container>
     </Layout>
   )
 }
