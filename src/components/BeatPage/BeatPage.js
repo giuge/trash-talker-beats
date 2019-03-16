@@ -9,10 +9,11 @@ const BeatPage = props => {
   const beatsCollections = props.data.allShopifyCollection.edges
   const previews = props.data.allFile.edges
   const validProducts = getValidBeats(beatsCollections, previews)
+  const beat = validProducts.find(b => b.id === props.pageContext.id)
 
   return (
     <Layout>
-      <BeatDetails beat={props.pageContext} products={validProducts} />
+      <BeatDetails beat={beat} products={validProducts} />
     </Layout>
   )
 }

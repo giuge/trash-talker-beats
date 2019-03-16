@@ -28,9 +28,9 @@ const Menu = styled.ul`
   text-align: center;
 `
 
-const MenuItem = styled.li`
-  cursor: pointer;
-`
+// const MenuItem = styled.li`
+//   cursor: pointer;
+// `
 
 const Logo = styled.div`
   margin: 0;

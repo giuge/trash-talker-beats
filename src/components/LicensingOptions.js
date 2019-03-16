@@ -14,7 +14,7 @@ const LicenseContainer = styled.div`
   }
 `
 
-const License = styled.div`
+const StyledLicense = styled.div`
   padding: 16px;
   background: #dceaf4;
   border-radius: 4px;
@@ -91,34 +91,43 @@ const Disclaimer = styled.p`
   opacity: 0.7;
 `
 
+export const License = ({ title, price, description, URL }) => (
+  <StyledLicense>
+    <LicenseTitle>{title}</LicenseTitle>
+    <LicensePrice>{price}</LicensePrice>
+    <LicenseDescription>{description}</LicenseDescription>
+    <LicenseTerms to={URL}>Read full terms</LicenseTerms>
+  </StyledLicense>
+)
+
 const LicensingOptions = () => {
   return (
     <Container>
       <LicenseContainer>
-        <License>
-          <LicenseTitle>Basic Lease</LicenseTitle>
-          <LicensePrice>29€</LicensePrice>
-          <LicenseDescription>Untagged MP3</LicenseDescription>
-          <LicenseTerms to="/">Read full terms</LicenseTerms>
-        </License>
-        <License>
-          <LicenseTitle>Standard Lease</LicenseTitle>
-          <LicensePrice>49€</LicensePrice>
-          <LicenseDescription>Untagged MP3 and WAV</LicenseDescription>
-          <LicenseTerms to="/">Read full terms</LicenseTerms>
-        </License>
-        <License>
-          <LicenseTitle>Premium Lease</LicenseTitle>
-          <LicensePrice>99€</LicensePrice>
-          <LicenseDescription>MP3, WAV and Stems</LicenseDescription>
-          <LicenseTerms to="/">Read full terms</LicenseTerms>
-        </License>
-        <License>
-          <LicenseTitle>Unlimited Lease</LicenseTitle>
-          <LicensePrice>299€</LicensePrice>
-          <LicenseDescription>MP3, WAV and Stems</LicenseDescription>
-          <LicenseTerms to="/">Read full terms</LicenseTerms>
-        </License>
+        <License
+          title="Basic Lease"
+          price="29€"
+          description="Untagged MP3"
+          URL="/"
+        />
+        <License
+          title="Standard Lease"
+          price="49€"
+          description="Untagged MP3 and WAV"
+          URL="/"
+        />
+        <License
+          title="Premium Lease"
+          price="99€"
+          description="MP3, WAV and Stems"
+          URL="/"
+        />
+        <License
+          title="Unlimited Lease"
+          price="299€"
+          description="MP3, WAV and Stems"
+          URL="/"
+        />
       </LicenseContainer>
       <Disclaimer>
         Prices may very depending on products, variants or available promotions.
