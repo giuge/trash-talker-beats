@@ -80,6 +80,10 @@ const BeatListContainer = styled(Container)`
   padding: 40px 40px 56px 40px;
 `
 
+const LicenseContainer = styled(Container)`
+  max-width: 100%;
+`
+
 const LicensingTitle = styled(Title)`
   padding: 40px 40px 56px 40px;
 `
@@ -245,10 +249,10 @@ const BeatDetails = props => {
         <Title>All Beats</Title>
         <BeatList products={products} />
       </BeatListContainer>
-      <Container>
+      <LicenseContainer>
         <LicensingTitle>Licensing options</LicensingTitle>
         <LicensingOptions />
-      </Container>
+      </LicenseContainer>
       <AudioPlayer />
     </>
   )
