@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Sound from 'react-sound'
 import styled from 'styled-components'
 import { MdShoppingCart } from 'react-icons/md'
 
-import { withAllContext } from '../../context/AllContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 import PlayPauseButton from './PlayPauseButton'
 import VolumeController from './VolumeController'
 import Scrubber from './Scrubber'
@@ -92,108 +92,92 @@ const VolumeControllerContainer = styled.div`
   }
 `
 
-class AudioPlayer extends Component {
-  constructor(props) {
-    super(props)
+const AudioPlayer = () => {
+  const [position, setPosition] = useState({})
+  const [seekposition, setSeekposition] = useState(0)
 
-    this.state = {
-      position: {},
-      seekPosition: 0,
-    }
-  }
+  const interfaceContext = useContext(InterfaceContext)
+  const storeContext = useContext(StoreContext)
+  const { adding } = storeContext.store
+  const {
+    previewFile,
+    selectVariant,
+    setPlayerStatus,
+    selectPreview,
+    playerStatus,
+    playerVolume,
+  } = interfaceContext.interface
 
-  handleCallback(seekPosition) {
-    this.setState(state => ({
-      ...state,
-      seekPosition: seekPosition,
-    }))
-  }
+  const imgSource = previewFile.images
+    ? previewFile.images[0].localFile.childImageSharp.fixed.src
+    : null
 
-  addToCart(e) {
-    const { previewFile, selectVariant } = this.props.context.interface
-
+  const addToCart = e => {
     e.stopPropagation()
     selectVariant(previewFile)
   }
 
-  handleFinishedPlaying() {
-    const { setPlayerStatus, selectPreview } = this.props.context.interface
-    this.setState({ position: {}, seekPosition: 0 })
-    selectPreview()
+  const handleFinishedPlaying = () => {
     setPlayerStatus('STOPPED')
+    setSeekposition(0)
+    setPosition({})
+    selectPreview()
   }
 
-  componentDidMount() {
+  useEffect(() => {
     if (window && !!window.soundManager) {
       window.soundManager.setup({
         ignoreMobileRestrictions: true,
         useHighPerformance: true,
       })
     }
-  }
+  }, [])
 
-  render() {
-    const {
-      previewFile,
-      playerStatus,
-      playerVolume,
-      setPlayerStatus,
-    } = this.props.context.interface
-
-    const { adding } = this.props.context.store
-
-    const imgSource = previewFile.images
-      ? previewFile.images[0].localFile.childImageSharp.fixed.src
-      : null
-
-    return (
-      <Container show={Object.keys(previewFile).length > 0}>
-        <Scrubber
-          position={this.state.position}
-          callback={p => this.handleCallback(p)}
+  return (
+    <Container show={Object.keys(previewFile).length > 0}>
+      <Scrubber position={position} callback={p => setSeekposition(p)} />
+      <Details>
+        <img src={imgSource} alt={previewFile.title} />
+        <BeatInfo>
+          <h2>
+            {previewFile.title ? `${previewFile.title}` : 'No track selected'}
+          </h2>
+          {previewFile.tags &&
+            previewFile.tags.map(t => <span key={t}>{`#${t}`}</span>)}
+        </BeatInfo>
+        <AddToCart onClick={e => addToCart(e)} disabled={adding}>
+          <MdShoppingCart />
+          BUY
+        </AddToCart>
+      </Details>
+      <div>
+        <Sound
+          url={previewFile.preview ? previewFile.preview.publicURL : ''}
+          loop={false}
+          playStatus={playerStatus}
+          volume={playerVolume}
+          position={seekposition}
+          onLoad={() =>
+            /* Needed to trigger the waveform */
+            setPlayerStatus('PLAYING')
+          }
+          onPlaying={position => {
+            setSeekposition(position.position)
+            setPosition(position)
+          }}
+          onFinishedPlaying={() => handleFinishedPlaying()}
+          onStop={() => {
+            setPosition({})
+            setSeekposition(0)
+          }}
         />
-        <Details>
-          <img src={imgSource} alt={previewFile.title} />
-          <BeatInfo>
-            <h2>
-              {previewFile.title ? `${previewFile.title}` : 'No track selected'}
-            </h2>
-            {previewFile.tags &&
-              previewFile.tags.map(t => <span key={t}>{`#${t}`}</span>)}
-          </BeatInfo>
-          <AddToCart onClick={e => this.addToCart(e)} disabled={adding}>
-            <MdShoppingCart />
-            BUY
-          </AddToCart>
-        </Details>
-        <div>
-          <Sound
-            url={previewFile.preview ? previewFile.preview.publicURL : ''}
-            loop={false}
-            playStatus={playerStatus}
-            volume={playerVolume}
-            position={this.state.seekPosition}
-            onLoad={() =>
-              /* Needed to trigger the waveform */
-              setPlayerStatus('PLAYING')
-            }
-            onPlaying={(position, _) =>
-              this.setState(_ => ({
-                position,
-                seekPosition: position.position,
-              }))
-            }
-            onFinishedPlaying={() => this.handleFinishedPlaying()}
-            onStop={() => this.setState({ position: {}, seekPosition: 0 })}
-          />
-          <PlayPauseButton />
-        </div>
-        <VolumeControllerContainer>
-          <VolumeController />
-        </VolumeControllerContainer>
-      </Container>
-    )
-  }
+        <PlayPauseButton />
+      </div>
+      <VolumeControllerContainer>
+        <VolumeController />
+      </VolumeControllerContainer>
+    </Container>
+  )
 }
 
-export default withAllContext(AudioPlayer)
+export default AudioPlayer

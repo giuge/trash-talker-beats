@@ -164,14 +164,17 @@ const BeatDetails = props => {
   const interfaceContext = useContext(InterfaceContext)
   const storeContext = useContext(StoreContext)
 
+  const { selectPreview, stopPlayer, openCart } = interfaceContext.interface
+  const { updateProducts, checkout, addVariantToCart } = storeContext.store
+
   useEffect(() => {
-    interfaceContext.interface.selectPreview(beat)
-    interfaceContext.interface.stopPlayer()
-    storeContext.store.updateProducts(products)
+    selectPreview(beat)
+    stopPlayer()
+    updateProducts(products)
   }, [beat])
 
   const isSelectedVariant = variant => {
-    for (let item of storeContext.store.checkout.lineItems) {
+    for (let item of checkout.lineItems) {
       if (item.variant.id === variant.shopifyId) {
         return true
       }
@@ -180,9 +183,6 @@ const BeatDetails = props => {
   }
 
   const addToCart = variant => {
-    const { openCart } = interfaceContext.interface
-    const { addVariantToCart } = storeContext.store
-
     addVariantToCart(variant.shopifyId, beat.shopifyId)
     openCart()
   }
@@ -234,9 +234,7 @@ const BeatDetails = props => {
             <span key={t}>{`#${t}`}</span>
           ))}
         </TagsContainer>
-        <BeatImage
-          onClick={() => interfaceContext.interface.selectPreview(beat)}
-        >
+        <BeatImage onClick={() => selectPreview(beat)}>
           <StyledCover image={image} />
           <StyledVinyl />
         </BeatImage>

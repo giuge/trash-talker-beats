@@ -1,9 +1,10 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdDelete } from 'react-icons/md'
 
-import { withAllContext } from '../../context/AllContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 
 const Container = styled.li`
   margin: 0;
@@ -11,10 +12,6 @@ const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  // padding: 8px;
-  // background: rgba(255, 255, 255, 0.5);
-  // border-radius: 4px;
 `
 
 const Image = styled.img`
@@ -76,8 +73,14 @@ const ChangeLeaseButton = styled.button`
   cursor: pointer;
 `
 
-const LineItem = ({ context, product, currencySymbol }) => {
-  const { store } = context
+const LineItem = ({ product, currencySymbol }) => {
+  const storeContext = useContext(StoreContext)
+  const interfaceContext = useContext(InterfaceContext)
+  const { store } = storeContext
+  const {
+    selectVariant,
+    toggleVariantSelectionModal,
+  } = interfaceContext.interface
 
   const removeLineItem = lineItem => {
     store.removeLineItem(lineItem.id)
@@ -88,11 +91,9 @@ const LineItem = ({ context, product, currencySymbol }) => {
       p => p.shopifyId === product.variant.product.id
     )
 
-    console.log(productFromVariant)
-
     if (!!productFromVariant) {
-      context.interface.selectVariant(productFromVariant)
-      context.interface.toggleVariantSelectionModal()
+      selectVariant(productFromVariant)
+      toggleVariantSelectionModal()
     }
   }
 
@@ -132,4 +133,14 @@ const LineItem = ({ context, product, currencySymbol }) => {
   )
 }
 
-export default withAllContext(LineItem)
+LineItem.propTypes = {
+  product: PropTypes.array.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+}
+
+LineItem.defaultProps = {
+  product: {},
+  currencySymbol: '€',
+}
+
+export default LineItem

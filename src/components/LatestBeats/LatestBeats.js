@@ -1,6 +1,7 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { withInterfaceContext } from '../../context/InterfaceContext'
+import { InterfaceContext } from '../../context/'
 
 import Cover from './Cover'
 import Vinyl from './Vinyl'
@@ -69,7 +70,8 @@ const BeatInfo = styled.div`
   }
 `
 
-const LatestBeats = ({ products, context }) => {
+const LatestBeats = ({ products }) => {
+  const interfaceContext = useContext(InterfaceContext)
   return (
     <Container>
       {products.map(p => {
@@ -77,7 +79,7 @@ const LatestBeats = ({ products, context }) => {
         return (
           <BeatInfo
             key={p.handle}
-            onClick={() => context.interface.selectPreview(p)}
+            onClick={() => interfaceContext.interface.selectPreview(p)}
           >
             <BeatTitle>{p.title}</BeatTitle>
             <StyledCover image={image} />
@@ -89,4 +91,12 @@ const LatestBeats = ({ products, context }) => {
   )
 }
 
-export default withInterfaceContext(LatestBeats)
+LatestBeats.propTypes = {
+  products: PropTypes.array.isRequired,
+}
+
+LatestBeats.defaultProps = {
+  products: [],
+}
+
+export default LatestBeats

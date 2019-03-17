@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const Cover = props => (
@@ -20,5 +21,13 @@ const Cover = props => (
     />
   </svg>
 )
+
+Cover.propTypes = {
+  image: PropTypes.string.isRequired,
+}
+
+Cover.defaultProps = {
+  image: '',
+}
 
 export default Cover

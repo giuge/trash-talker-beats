@@ -143,13 +143,3 @@ export default class InterfaceContextProvider extends Component {
     )
   }
 }
-
-export function withInterfaceContext(Component) {
-  return function WrapperComponent(props) {
-    return (
-      <InterfaceContext.Consumer>
-        {state => <Component {...props} context={state} />}
-      </InterfaceContext.Consumer>
-    )
-  }
-}

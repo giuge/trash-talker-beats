@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import React, { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { withAllContext } from '../../context/AllContext'
+import { StoreContext } from '../../context/'
 import Product from './Beat'
 
 const Container = styled.div`
@@ -84,96 +85,91 @@ const GenreSelector = styled.select`
   }
 `
 
-class ProductsList extends Component {
-  constructor(props) {
-    super(props)
+const BeatList = ({ products }) => {
+  const [searchResults, setSearchResults] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [genre, setGenre] = useState('')
+  const allGenres = products.map(p => p.genre)
+  const genres = allGenres.filter((v, i) => allGenres.indexOf(v) === i)
+  const storeContext = useContext(StoreContext)
 
-    const allGenres = this.props.products.map(p => p.genre)
-    const genres = allGenres.filter((v, i) => allGenres.indexOf(v) === i)
+  useEffect(() => {
+    storeContext.store.updateProducts(products)
+  }, [products])
 
-    this.state = {
-      serchResults: [],
-      searchTerm: '',
-      genres,
+  useEffect(() => {
+    if (searchTerm && (!genre || genre === 'all genres')) {
+      setSearchResults(
+        storeContext.store.products.filter(r =>
+          r.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    } else if (genre && genre !== 'all genres' && !searchTerm) {
+      setSearchResults(
+        storeContext.store.products.filter(r =>
+          r.genre.toLowerCase().includes(genre.toLocaleLowerCase())
+        )
+      )
+    } else if (genre && genre !== 'all genres' && searchTerm) {
+      setSearchResults(
+        storeContext.store.products.filter(
+          r =>
+            r.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            r.genre.toLowerCase().includes(genre.toLocaleLowerCase())
+        )
+      )
+    } else {
+      setSearchResults([])
     }
-  }
+  }, [genre, searchTerm])
 
-  componentDidMount() {
-    const { context, products } = this.props
-    context.store.updateProducts(products)
-  }
-
-  getProductsToFilter() {
-    const { searchResults } = this.state
-    const { products } = this.props.context.store
-    return searchResults && searchResults.length > 0 ? searchResults : products
-  }
-
-  handleChange(e) {
-    const searchTerm = e.target.value
-
-    this.setState({
-      serchResults: this.getProductsToFilter().filter(r =>
-        r.title.toLowerCase().includes(searchTerm.toLowerCase())
-      ),
-      searchTerm,
-    })
-  }
-
-  handleSelectChange(e) {
-    const searchTerm = e.target.value.toLowerCase()
-
-    this.setState({
-      serchResults:
-        searchTerm !== 'All genres'
-          ? this.getProductsToFilter().filter(r =>
-              r.genre.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-          : [],
-      searchTerm: '',
-    })
-  }
-
-  renderProducts() {
-    const { context } = this.props
-    const { products } = context.store
-    const { serchResults, searchTerm } = this.state
-    const productsToUse = serchResults.length !== 0 ? serchResults : products
+  const renderProducts = () => {
+    const productsToUse =
+      searchResults.length > 0 ? searchResults : storeContext.store.products
 
     if (products.length === 0) {
       return <EmptyText>No products in store</EmptyText>
-    } else if (serchResults.length === 0 && searchTerm) {
+    } else if (
+      (searchResults.length === 0 && searchTerm) ||
+      (searchResults.length === 0 && genre && genre !== 'all genres')
+    ) {
       return <EmptyText>No product matches your criteria</EmptyText>
     }
 
     return productsToUse.map(p => <Product beat={p} key={p.id} />)
   }
 
-  render() {
-    return (
-      <Container>
-        <Header>
-          <SearchInput
-            type="text"
-            onChange={e => this.handleChange(e)}
-            value={this.state.searchTerm}
-            placeholder="Search beats"
-          />
-          <GenreSelector
-            defaultValue="Genre"
-            onChange={e => this.handleSelectChange(e)}
-          >
-            <option disabled>Genre</option>
-            {this.state.genres.map(g => (
-              <option key={g}>{g}</option>
-            ))}
-            <option>All genres</option>
-          </GenreSelector>
-        </Header>
-        <List>{this.renderProducts()}</List>
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      <Header>
+        <SearchInput
+          type="text"
+          onChange={e => setSearchTerm(e.target.value)}
+          value={searchTerm}
+          placeholder="Search beats"
+        />
+        <GenreSelector
+          defaultValue="Genre"
+          onChange={e => setGenre(e.target.value.toLowerCase())}
+        >
+          <option disabled>Genre</option>
+          {genres.map(g => (
+            <option key={g}>{g}</option>
+          ))}
+          <option>All genres</option>
+        </GenreSelector>
+      </Header>
+      <List>{renderProducts()}</List>
+    </Container>
+  )
 }
 
-export default withAllContext(ProductsList)
+BeatList.propTypes = {
+  products: PropTypes.array.isRequired,
+}
+
+BeatList.defaultProps = {
+  products: [],
+}
+
+export default BeatList

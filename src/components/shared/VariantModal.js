@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconContext } from 'react-icons'
 import { MdClose } from 'react-icons/md'
 import styled from 'styled-components'
 
-import { withAllContext } from '../../context/AllContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 
 const Container = styled.div`
   visibility: ${props => (props.status === 'open' ? 'visible' : 'hidden')};
@@ -168,18 +168,20 @@ const TagList = styled.ul`
   }
 `
 
-const VariantModal = props => {
-  const { context } = props
+const VariantModal = () => {
+  const interfaceContext = useContext(InterfaceContext)
+  const storeContext = useContext(StoreContext)
+
   const {
     selectingVariantForProuct,
     variantSelectionModalStatus,
     toggleVariantSelectionModal,
     selectVariant,
     openCart,
-  } = context.interface
+  } = interfaceContext.interface
 
   const addToCart = variant => {
-    context.store.addVariantToCart(
+    storeContext.store.addVariantToCart(
       variant.shopifyId,
       selectingVariantForProuct.shopifyId
     )
@@ -199,7 +201,7 @@ const VariantModal = props => {
   }
 
   const isSelectedVariant = variant => {
-    for (let item of context.store.checkout.lineItems) {
+    for (let item of storeContext.store.checkout.lineItems) {
       if (item.variant.id === variant.shopifyId) {
         return true
       }
@@ -285,4 +287,4 @@ const VariantModal = props => {
   )
 }
 
-export default withAllContext(VariantModal)
+export default VariantModal

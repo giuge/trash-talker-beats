@@ -5,8 +5,7 @@ import { MdClose } from 'react-icons/md'
 import { Emojione } from 'react-emoji-render'
 
 import LineItem from './LineItem'
-import { StoreContext } from '../../context/StoreContext'
-import { InterfaceContext } from '../../context/InterfaceContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 
 const Container = styled.div`
   transform: ${props =>

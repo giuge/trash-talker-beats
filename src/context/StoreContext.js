@@ -307,13 +307,3 @@ export default class StoreContextProvider extends Component {
     )
   }
 }
-
-export function withStoreContext(Component) {
-  return function WrapperComponent(props) {
-    return (
-      <StoreContext.Consumer>
-        {state => <Component {...props} context={state} />}
-      </StoreContext.Consumer>
-    )
-  }
-}

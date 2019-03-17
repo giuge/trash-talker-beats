@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdPlayArrow, MdPause } from 'react-icons/md'
 
-import { withInterfaceContext } from '../../context/InterfaceContext'
+import { InterfaceContext } from '../../context/'
 
 const Container = styled.div`
   position: relative;
@@ -18,7 +18,12 @@ const Container = styled.div`
 `
 
 const PlayPauseButton = props => {
-  const { playerStatus, setPlayerStatus, previewFile } = props.context.interface
+  const interfaceContext = useContext(InterfaceContext)
+  const {
+    playerStatus,
+    setPlayerStatus,
+    previewFile,
+  } = interfaceContext.interface
 
   const renderIcon = () =>
     playerStatus === 'PLAYING' &&
@@ -59,4 +64,4 @@ const PlayPauseButton = props => {
   )
 }
 
-export default withInterfaceContext(PlayPauseButton)
+export default PlayPauseButton

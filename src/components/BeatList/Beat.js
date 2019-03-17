@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdShoppingCart, MdPlayArrow, MdFileDownload } from 'react-icons/md'
 
-import { withAllContext } from '../../context/AllContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 
 const ListItem = styled.li`
   display: flex;
@@ -166,37 +166,45 @@ const DownloadLink = styled.a`
   margin-right: 16px;
 `
 
-const Product = props => {
-  const { beat, context } = props
+const Beat = props => {
+  const { beat } = props
   const image = beat ? beat.images[0].localFile.childImageSharp.fixed.src : null
 
+  const interfaceContext = useContext(InterfaceContext)
+  const storeContext = useContext(StoreContext)
+
+  const {
+    selectPreview,
+    selectVariant,
+    previewFile,
+  } = interfaceContext.interface
+  const { adding, isProductInCart } = storeContext.store
+
   const handleClick = e => {
-    context.interface.selectPreview(beat)
+    selectPreview(beat)
   }
 
   const addToCart = e => {
     e.stopPropagation()
-    context.interface.selectVariant(beat)
+    selectVariant(beat)
   }
 
   const renderButton = () => {
-    if (context.store.isProductInCart(beat.shopifyId)) {
+    if (isProductInCart(beat.shopifyId)) {
       return (
-        <InCart onClick={e => addToCart(e)} disabled={context.store.adding}>
+        <InCart onClick={e => addToCart(e)} disabled={adding}>
           In cart
         </InCart>
       )
     } else {
       return (
-        <AddToCart onClick={e => addToCart(e)} disabled={context.store.adding}>
+        <AddToCart onClick={e => addToCart(e)} disabled={adding}>
           <MdShoppingCart />
           Add
         </AddToCart>
       )
     }
   }
-
-  const { previewFile } = context.interface
 
   return (
     <ListItem
@@ -248,12 +256,12 @@ const Product = props => {
   )
 }
 
-Product.propTypes = {
-  siteTitle: PropTypes.string,
+Beat.propTypes = {
+  beat: PropTypes.object.isRequired,
 }
 
-Product.defaultProps = {
-  siteTitle: '',
+Beat.defaultProps = {
+  beat: {},
 }
 
-export default withAllContext(Product)
+export default Beat

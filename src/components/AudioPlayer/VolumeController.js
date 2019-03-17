@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Slider from 'rc-slider'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import { MdVolumeMute, MdVolumeDown, MdVolumeUp } from 'react-icons/md'
 import 'rc-slider/assets/index.css'
 
-import { withInterfaceContext } from '../../context/InterfaceContext'
+import { InterfaceContext } from '../../context/'
 
 const Container = styled.div`
   width: 40%;
@@ -24,7 +24,8 @@ const SliderContainer = styled.div`
 `
 
 const VolumeController = props => {
-  const { playerVolume, setPlayerVolume } = props.context.interface
+  const interfaceContext = useContext(InterfaceContext)
+  const { playerVolume, setPlayerVolume } = interfaceContext.interface
 
   const renderIcon = () => {
     if (playerVolume === 0) {
@@ -90,4 +91,4 @@ const VolumeController = props => {
   )
 }
 
-export default withInterfaceContext(VolumeController)
+export default VolumeController

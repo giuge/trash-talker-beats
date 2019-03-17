@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -63,6 +64,14 @@ const PolicyPage = ({ pageContext }) => {
       </Container>
     </Layout>
   )
+}
+
+PolicyPage.propTypes = {
+  pageContext: PropTypes.object.isRequired,
+}
+
+PolicyPage.defaultProps = {
+  pageContext: {},
 }
 
 export default PolicyPage

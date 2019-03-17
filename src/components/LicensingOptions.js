@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
@@ -134,6 +135,20 @@ const LicensingOptions = () => {
       </Disclaimer>
     </Container>
   )
+}
+
+LicensingOptions.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  URL: PropTypes.string.isRequired,
+}
+
+LicensingOptions.defaultProps = {
+  title: '',
+  price: '',
+  description: '',
+  URL: '',
 }
 
 export default LicensingOptions

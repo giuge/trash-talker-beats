@@ -1,10 +1,9 @@
-import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { StaticQuery, graphql, Link } from 'gatsby'
 
-import { withAllContext } from '../../context/AllContext'
+import { InterfaceContext, StoreContext } from '../../context/'
 
 const Container = styled.div`
   background: none;
@@ -101,13 +100,16 @@ const LogoQuery = graphql`
   }
 `
 
-const Header = ({ siteTitle, context }) => {
+const Header = ({ siteTitle }) => {
+  const interfaceContext = useContext(InterfaceContext)
+  const storeContext = useContext(StoreContext)
+
   const handleClick = e => {
     e.preventDefault()
-    context.interface.toggleCart()
+    interfaceContext.interface.toggleCart()
   }
 
-  const itemsInCart = context.store.checkout.lineItems.reduce(
+  const itemsInCart = storeContext.store.checkout.lineItems.reduce(
     (total, item) => total + item.quantity,
     0
   )
@@ -145,4 +147,4 @@ Header.defaultProps = {
   siteTitle: '',
 }
 
-export default withAllContext(Header)
+export default Header
