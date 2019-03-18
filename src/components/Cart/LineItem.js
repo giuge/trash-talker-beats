@@ -134,7 +134,7 @@ const LineItem = ({ product, currencySymbol }) => {
 }
 
 LineItem.propTypes = {
-  product: PropTypes.array.isRequired,
+  product: PropTypes.object.isRequired,
   currencySymbol: PropTypes.string.isRequired,
 }
 
