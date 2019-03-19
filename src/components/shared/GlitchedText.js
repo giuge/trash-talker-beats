@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import { InterfaceContext } from '../../context/'
@@ -294,10 +294,18 @@ const Glitch = styled.div`
 `
 
 const GlitchedText = ({ children }) => {
+  const [shouldGlitch, setShouldGlitch] = useState(false)
   const interfaceContext = useContext(InterfaceContext)
   const { playerStatus } = interfaceContext.interface
 
-  return playerStatus === 'PLAYING' ? (
+  useEffect(() => {
+    setShouldGlitch(playerStatus === 'PLAYING')
+  }, [playerStatus])
+
+  console.log(shouldGlitch)
+  console.log(playerStatus)
+
+  return shouldGlitch ? (
     <GlitchContanier>
       <Glitch>
         {children}

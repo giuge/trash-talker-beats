@@ -86,7 +86,7 @@ const LicenseContainer = styled(Container)`
 `
 
 const LicensingTitle = styled(Title)`
-  padding: 40px 40px 56px 40px;
+  padding: 40px 0 56px 0;
 `
 
 const VariantSectionTitle = styled.p`

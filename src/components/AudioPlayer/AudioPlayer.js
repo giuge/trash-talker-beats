@@ -118,10 +118,10 @@ const AudioPlayer = () => {
   }
 
   const handleFinishedPlaying = () => {
+    selectPreview()
     setPlayerStatus('STOPPED')
     setSeekposition(0)
     setPosition({})
-    selectPreview()
   }
 
   useEffect(() => {
