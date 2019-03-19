@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { InterfaceContext, StoreContext } from '../../context/'
+import GlitchedText from '../shared/GlitchedText'
 import BeatList from '../BeatList/'
 import LicensingOptions from '../LicensingOptions'
 import AudioPlayer from '../AudioPlayer'
@@ -228,7 +229,9 @@ const BeatDetails = props => {
   return (
     <>
       <Container>
-        <Title>{beat.title}</Title>
+        <GlitchedText>
+          <Title>{beat.title}</Title>
+        </GlitchedText>
         <TagsContainer>
           {beat.tags.map(t => (
             <span key={t}>{`#${t}`}</span>
@@ -244,11 +247,15 @@ const BeatDetails = props => {
         {renderVariants()}
       </Container>
       <BeatListContainer>
-        <Title>All Beats</Title>
+        <GlitchedText>
+          <Title>All Beats</Title>
+        </GlitchedText>
         <BeatList products={products} />
       </BeatListContainer>
       <LicenseContainer>
-        <LicensingTitle>Licensing options</LicensingTitle>
+        <GlitchedText>
+          <LicensingTitle>Licensing options</LicensingTitle>
+        </GlitchedText>
         <LicensingOptions />
       </LicenseContainer>
       <AudioPlayer />

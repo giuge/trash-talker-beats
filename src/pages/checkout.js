@@ -29,6 +29,8 @@ const Redirect = () => {
     if (webUrl && lineItems.length > 0) {
       window.location.href = webUrl
     }
+
+    return
   }, [webUrl, lineItems])
 
   const renderMessage = () => {

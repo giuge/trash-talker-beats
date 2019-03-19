@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/shared/Seo'
+import GlitchedText from '../components/shared/GlitchedText'
 import BeatList from '../components/BeatList/'
 import LatestBeats from '../components/LatestBeats/'
 import LicensingOptions from '../components/LicensingOptions'
@@ -71,20 +72,30 @@ const IndexPage = props => {
         ]}
       />
       <Container>
-        <Title>
+        <GlitchedText>
+          <Title>
+            Handcrafted quality beats <br />
+            for your next song
+          </Title>
+        </GlitchedText>
+        {/* <Title>
           Handcrafted quality beats <br />
           for your next song
-        </Title>
+        </Title> */}
       </Container>
       <Container>
         <LatestBeats products={validProducts.slice(0, 3)} />
       </Container>
       <BeatListContainer>
-        <Title>All Beats</Title>
+        <GlitchedText>
+          <Title>All Beats</Title>
+        </GlitchedText>
         <BeatList products={validProducts} {...props} />
       </BeatListContainer>
       <Container>
-        <LicensingTitle>Licensing options</LicensingTitle>
+        <GlitchedText>
+          <LicensingTitle>Licensing options</LicensingTitle>
+        </GlitchedText>
         <LicensingOptions />
       </Container>
     </Layout>
