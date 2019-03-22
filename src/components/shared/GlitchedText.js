@@ -302,9 +302,6 @@ const GlitchedText = ({ children }) => {
     setShouldGlitch(playerStatus === 'PLAYING')
   }, [playerStatus])
 
-  console.log(shouldGlitch)
-  console.log(playerStatus)
-
   return shouldGlitch ? (
     <GlitchContanier>
       <Glitch>
