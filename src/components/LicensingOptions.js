@@ -109,25 +109,25 @@ const LicensingOptions = () => {
           title="Basic Lease"
           price="29€"
           description="Untagged MP3"
-          URL="/"
+          URL="/basic-lease"
         />
         <License
           title="Standard Lease"
           price="49€"
           description="Untagged MP3 and WAV"
-          URL="/"
+          URL="/standard-lease"
         />
         <License
           title="Premium Lease"
           price="99€"
           description="MP3, WAV and Stems"
-          URL="/"
+          URL="/premium-lease"
         />
         <License
           title="Unlimited Lease"
           price="299€"
           description="MP3, WAV and Stems"
-          URL="/"
+          URL="/unlimited-lease"
         />
       </LicenseContainer>
       <Disclaimer>
