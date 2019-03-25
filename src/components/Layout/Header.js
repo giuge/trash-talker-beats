@@ -27,9 +27,32 @@ const Menu = styled.ul`
   text-align: center;
 `
 
-// const MenuItem = styled.li`
-//   cursor: pointer;
-// `
+const MenuItem = styled.li`
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 40px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  a {
+    color: #dceaf4;
+    opacity: 0.4;
+    transition: all 0.2s;
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+
+  a:visited,
+  a:active {
+    color: #dceaf4;
+    text-decoration: none;
+    border: none;
+  }
+`
 
 const Logo = styled.div`
   margin: 0;
@@ -114,6 +137,11 @@ const Header = ({ siteTitle }) => {
     0
   )
 
+  const handleMailClick = e => {
+    e.preventDefault()
+    window.location.href = 'mailto:hello@trashtalkerbeats.com'
+  }
+
   return (
     <StaticQuery
       query={LogoQuery}
@@ -125,9 +153,14 @@ const Header = ({ siteTitle }) => {
             </Link>
           </Logo>
           <Menu>
-            {/* <MenuItem>
+            <MenuItem>
               <Link to="/">Beats</Link>
-            </MenuItem> */}
+            </MenuItem>
+            <MenuItem>
+              <a href="/" onClick={e => handleMailClick(e)}>
+                Contact
+              </a>
+            </MenuItem>
           </Menu>
           <CartLink items={itemsInCart}>
             <CartBadge>{itemsInCart}</CartBadge>

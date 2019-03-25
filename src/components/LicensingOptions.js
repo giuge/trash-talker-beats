@@ -24,6 +24,10 @@ const StyledLicense = styled.div`
   width: 23%;
   flex-basis: 23%;
 
+  @media (min-width: 1024px) {
+    transform: ${props => (props.popular ? 'scale(1.1)' : '0')};
+  }
+
   @media (max-width: 700px) {
     width: 100%;
     margin-bottom: 2em;
@@ -36,10 +40,10 @@ const LicenseTitle = styled.h2`
   font-size: 1em;
   text-transform: uppercase;
   margin-bottom: 0;
+  font-weight: ${props => (props.popular ? '600' : '400')};
+  opacity: ${props => (props.popular ? '1' : '0.7')};
 
   color: #0d2b40;
-
-  opacity: 0.7;
 `
 
 const LicensePrice = styled.h3`
@@ -92,9 +96,9 @@ const Disclaimer = styled.p`
   opacity: 0.7;
 `
 
-export const License = ({ title, price, description, URL }) => (
-  <StyledLicense>
-    <LicenseTitle>{title}</LicenseTitle>
+export const License = ({ title, price, description, URL, popular }) => (
+  <StyledLicense popular={popular}>
+    <LicenseTitle popular={popular}>{title}</LicenseTitle>
     <LicensePrice>{price}</LicensePrice>
     <LicenseDescription>{description}</LicenseDescription>
     <LicenseTerms to={URL}>Read full terms</LicenseTerms>
@@ -122,6 +126,7 @@ const LicensingOptions = () => {
           price="99€"
           description="MP3, WAV and Stems"
           URL="/premium-lease"
+          popular={true}
         />
         <License
           title="Unlimited Lease"
