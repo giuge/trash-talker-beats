@@ -95,7 +95,7 @@ const UnlimitedLease = () => (
           and individually, a "Recordings") worldwide for up to the pressing or
           selling a total of Unlimited copies of such Recordings or any
           combination of such Recordings, condition upon the payment to the
-          Licensor a sum of Two Hundred And Ninety-nine dollars ($299.00),
+          Licensor a sum of One Hundred And Ninety-nine dollars ($199.00),
           receipt of which is confirmed. Additionally licensor shall be
           permitted to distribute Unlimited free internet downloads or streams
           for non-profit and non-commercial use. This license allows Unlimited
@@ -130,7 +130,7 @@ const UnlimitedLease = () => (
         <TextTitle>Consideration</TextTitle>
         <Text>
           In consideration for the rights granted under this agreement, Licensee
-          shall pay to licensor the sum of $299.00 US dollars and other good and
+          shall pay to licensor the sum of $199.00 US dollars and other good and
           valuable consideration, payable to " Trash Talker", receipt of which
           is hereby acknowledged. If the Licensee fails to account to the
           Licensor, timely complete the payments provided for hereunder, or

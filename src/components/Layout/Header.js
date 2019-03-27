@@ -137,11 +137,6 @@ const Header = ({ siteTitle }) => {
     0
   )
 
-  const handleMailClick = e => {
-    e.preventDefault()
-    window.location.href = 'mailto:hello@trashtalkerbeats.com'
-  }
-
   return (
     <StaticQuery
       query={LogoQuery}
@@ -153,14 +148,10 @@ const Header = ({ siteTitle }) => {
             </Link>
           </Logo>
           <Menu>
-            <MenuItem>
+            {/* <MenuItem>
               <Link to="/">Beats</Link>
             </MenuItem>
-            <MenuItem>
-              <a href="/" onClick={e => handleMailClick(e)}>
-                Contact
-              </a>
-            </MenuItem>
+            */}
           </Menu>
           <CartLink items={itemsInCart}>
             <CartBadge>{itemsInCart}</CartBadge>

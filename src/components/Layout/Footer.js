@@ -138,6 +138,9 @@ const Footer = () => {
             <li>
               <Link to="/refund-policy">Refund Policy</Link>
             </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
           </Menu>
           <SocialLinks>
             <li>

@@ -58,10 +58,12 @@ const LicensePrice = styled.h3`
   color: #0a1723;
 `
 
-const LicenseDescription = styled.p`
+const LicenseFeaturesList = styled.ul`
   font-size: 14px;
   line-height: 1.4em;
 `
+
+const LicenseFeature = styled.li``
 
 const LicenseTerms = styled(Link)`
   display: block;
@@ -96,12 +98,19 @@ const Disclaimer = styled.p`
   opacity: 0.7;
 `
 
-export const License = ({ title, price, description, URL, popular }) => (
-  <StyledLicense popular={popular}>
-    <LicenseTitle popular={popular}>{title}</LicenseTitle>
-    <LicensePrice>{price}</LicensePrice>
-    <LicenseDescription>{description}</LicenseDescription>
-    <LicenseTerms to={URL}>Read full terms</LicenseTerms>
+export const License = props => (
+  <StyledLicense popular={props.popular}>
+    <LicenseTitle popular={props.popular}>{props.title}</LicenseTitle>
+    <LicensePrice>{props.price}</LicensePrice>
+    <LicenseFeaturesList>
+      <li>Untagged MP3</li>
+      <li>Untagged WAV</li>
+      <li>Track stems</li>
+      <li>Digital distribution</li>
+      <li>YouTube monetization</li>
+      <li>Distribute {props.copies || 3000} copies</li>
+    </LicenseFeaturesList>
+    <LicenseTerms to={props.URL}>Read full terms</LicenseTerms>
   </StyledLicense>
 )
 
@@ -112,8 +121,9 @@ const LicensingOptions = () => {
         <License
           title="Basic Lease"
           price="29€"
-          description="Untagged MP3"
           URL="/basic-lease"
+          mp3={true}
+          copies={3000}
         />
         <License
           title="Standard Lease"
@@ -130,7 +140,7 @@ const LicensingOptions = () => {
         />
         <License
           title="Unlimited Lease"
-          price="299€"
+          price="199€"
           description="MP3, WAV and Stems"
           URL="/unlimited-lease"
         />
