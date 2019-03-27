@@ -52,11 +52,17 @@ const Contact = () => {
     e.preventDefault()
     setLoading(true)
 
+    if (botfilter) {
+      setLoading(false)
+      setSuccess(false)
+      return
+    }
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
-        botfilter,
+        'form-name': 'contact',
         name,
         email,
         subject,
@@ -77,13 +83,7 @@ const Contact = () => {
     <Layout>
       <Container>
         <Title>Get in touch</Title>
-        <ContactForm
-          name="contact"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="botfilter"
-          onSubmit={e => handleSubmit(e)}
-        >
+        <ContactForm onSubmit={e => handleSubmit(e)}>
           {/* You still need to add the hidden input with the form name to your JSX form */}
           <input
             type="hidden"
