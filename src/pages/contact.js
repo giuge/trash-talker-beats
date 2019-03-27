@@ -31,10 +31,15 @@ const ContactForm = styled.form`
 
   input,
   textarea {
-    padding: 8px;
+    padding: 16px 8px;
     border: none;
     background: #dceaf4;
     border-radius: 4px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
   }
 
   div > input[type='text'],
@@ -44,6 +49,12 @@ const ContactForm = styled.form`
 
     &:last-child {
       margin-right: 0;
+    }
+
+    @media (max-width: 700px) {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 16px;
     }
   }
 
@@ -58,6 +69,10 @@ const ContactForm = styled.form`
     width: 150px;
     margin-top: 16px;
     background: #ffaa00;
+
+    @media (max-width: 700px) {
+      margin: 24px auto;
+    }
   }
 `
 

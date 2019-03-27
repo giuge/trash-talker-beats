@@ -63,7 +63,20 @@ const LicenseFeaturesList = styled.ul`
   line-height: 1.4em;
 `
 
-const LicenseFeature = styled.li``
+const LicenseFeature = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  text-align: left;
+  list-style: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: ${props => (props.available ? 'inherit' : '#778C9C')};
+
+  &:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+`
 
 const LicenseTerms = styled(Link)`
   display: block;
@@ -98,17 +111,51 @@ const Disclaimer = styled.p`
   opacity: 0.7;
 `
 
+const Check = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <circle cx="8" cy="8" r="8" fill="#189C16" />
+    <path
+      d="M5 8.11111L7.625 12L11 5"
+      stroke="white"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+)
+
 export const License = props => (
   <StyledLicense popular={props.popular}>
     <LicenseTitle popular={props.popular}>{props.title}</LicenseTitle>
     <LicensePrice>{props.price}</LicensePrice>
     <LicenseFeaturesList>
-      <li>Untagged MP3</li>
-      <li>Untagged WAV</li>
-      <li>Track stems</li>
-      <li>Digital distribution</li>
-      <li>YouTube monetization</li>
-      <li>Distribute {props.copies || 3000} copies</li>
+      <LicenseFeature available={true}>
+        Distribute {props.copies || 3000} copies
+      </LicenseFeature>
+      <LicenseFeature available={!!props.mp3}>
+        Untagged MP3
+        {!!props.mp3 && <Check />}
+      </LicenseFeature>
+      <LicenseFeature available={!!props.wav}>
+        Untagged WAV
+        {!!props.wav && <Check />}
+      </LicenseFeature>
+      <LicenseFeature available={!!props.monetization}>
+        YouTube monetization
+        {!!props.monetization && <Check />}
+      </LicenseFeature>
+      <LicenseFeature available={!!props.stems}>
+        Track stems
+        {!!props.stems && <Check />}
+      </LicenseFeature>
+      <LicenseFeature available={!!props.distribution}>
+        Digital distribution
+        {!!props.distribution && <Check />}
+      </LicenseFeature>
+      <LicenseFeature available={!!props.commercial}>
+        {typeof props.commercial === 'boolean' ? '' : props.commercial}{' '}
+        Commercial use
+        {!!props.commercial && <Check />}
+      </LicenseFeature>
     </LicenseFeaturesList>
     <LicenseTerms to={props.URL}>Read full terms</LicenseTerms>
   </StyledLicense>
@@ -130,6 +177,9 @@ const LicensingOptions = () => {
           price="49€"
           description="Untagged MP3 and WAV"
           URL="/standard-lease"
+          mp3={true}
+          wav={true}
+          copies={5000}
         />
         <License
           title="Premium Lease"
@@ -137,12 +187,26 @@ const LicensingOptions = () => {
           description="MP3, WAV and Stems"
           URL="/premium-lease"
           popular={true}
+          mp3={true}
+          wav={true}
+          monetization={true}
+          commercial="1"
+          stems={true}
+          distribution={true}
+          copies={15000}
         />
         <License
           title="Unlimited Lease"
           price="199€"
           description="MP3, WAV and Stems"
           URL="/unlimited-lease"
+          mp3={true}
+          wav={true}
+          commercial={true}
+          monetization={true}
+          stems={true}
+          distribution={true}
+          copies="unlimited"
         />
       </LicenseContainer>
       <Disclaimer>
