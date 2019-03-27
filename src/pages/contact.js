@@ -52,35 +52,25 @@ const Contact = () => {
     e.preventDefault()
     setLoading(true)
 
-    console.log(
-      encode({
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
         botfilter,
         name,
         email,
         subject,
         message,
+      }),
+    })
+      .then(() => {
+        setLoading(false)
+        alert('Success!')
       })
-    )
-
-    // fetch('/', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //   body: encode({
-    //     contact: botfilter,
-    //     name,
-    //     email,
-    //     subject,
-    //     message,
-    //   }),
-    // })
-    //   .then(() => {
-    //     setLoading(false)
-    //     alert('Success!')
-    //   })
-    //   .catch(error => {
-    //     setLoading(false)
-    //     alert(error)
-    //   })
+      .catch(error => {
+        setLoading(false)
+        alert(error)
+      })
   }
 
   return (
