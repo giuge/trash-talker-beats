@@ -26,11 +26,43 @@ const Title = styled.h2`
 `
 
 const ContactForm = styled.form`
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
 
-  @media (max-width: 700px) {
-    padding: 40px 16px;
+  input,
+  textarea {
+    padding: 8px;
+    border: none;
+    background: #dceaf4;
+    border-radius: 4px;
   }
+
+  div > input[type='text'],
+  div > input[type='email'] {
+    width: 49%;
+    margin-right: 2%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  input[type='text'],
+  textarea {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  input[type='submit'] {
+    cursor: pointer;
+    width: 150px;
+    margin-top: 16px;
+    background: #ffaa00;
+  }
+`
+
+const ThanksMessage = styled.p`
+  text-align: center;
 `
 
 const Contact = () => {
@@ -40,7 +72,7 @@ const Contact = () => {
   const [message, setMessage] = useState('')
   const [botfilter, setBotfilter] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const encode = data => {
     return Object.keys(data)
@@ -54,7 +86,7 @@ const Contact = () => {
 
     if (botfilter) {
       setLoading(false)
-      setSuccess(false)
+      setSubmitted(true)
       return
     }
 
@@ -71,11 +103,11 @@ const Contact = () => {
     })
       .then(() => {
         setLoading(false)
-        alert('Success!')
+        setSubmitted(true)
       })
-      .catch(error => {
+      .catch(_ => {
         setLoading(false)
-        alert(error)
+        setSubmitted(false)
       })
   }
 
@@ -83,48 +115,53 @@ const Contact = () => {
     <Layout>
       <Container>
         <Title>Get in touch</Title>
-        <ContactForm onSubmit={e => handleSubmit(e)}>
-          {/* You still need to add the hidden input with the form name to your JSX form */}
-          <input
-            type="hidden"
-            name="botfilter"
-            value={botfilter}
-            onChange={e => setBotfilter(e.target.value)}
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            value={subject}
-            onChange={e => setSubject(e.target.value)}
-            required
-          />
-          <textarea
-            type="text"
-            name="message"
-            placeholder="Message"
-            value={message}
-            onChange={e => setMessage(e.target.value)}
-            required
-          />
-          <input type="submit" value={loading ? '...' : 'Submit'} />
-        </ContactForm>
+        {!submitted && (
+          <ContactForm onSubmit={e => handleSubmit(e)}>
+            {/* You still need to add the hidden input with the form name to your JSX form */}
+            <input
+              type="hidden"
+              name="botfilter"
+              value={botfilter}
+              onChange={e => setBotfilter(e.target.value)}
+            />
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={subject}
+              onChange={e => setSubject(e.target.value)}
+              required
+            />
+            <textarea
+              type="text"
+              name="message"
+              placeholder="Message"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              required
+            />
+            <input type="submit" value={loading ? '...' : 'Send Message'} />
+          </ContactForm>
+        )}
+        {submitted && <ThanksMessage>Thanks for reaching out!</ThanksMessage>}
       </Container>
     </Layout>
   )
