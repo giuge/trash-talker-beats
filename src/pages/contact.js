@@ -38,6 +38,7 @@ const Contact = () => {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [botfilter, setBotfilter] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState('')
 
@@ -51,26 +52,35 @@ const Contact = () => {
     e.preventDefault()
     setLoading(true)
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'contact',
+    console.log(
+      encode({
+        botfilter,
         name,
         email,
         subject,
         message,
-      }),
-    })
-      .then(() => {
-        setLoading(false)
-        alert('Success!')
       })
-      .catch(error => {
-        setLoading(false)
-        alert(error)
-      })
-    console.log(name, email, subject, message)
+    )
+
+    // fetch('/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: encode({
+    //     contact: botfilter,
+    //     name,
+    //     email,
+    //     subject,
+    //     message,
+    //   }),
+    // })
+    //   .then(() => {
+    //     setLoading(false)
+    //     alert('Success!')
+    //   })
+    //   .catch(error => {
+    //     setLoading(false)
+    //     alert(error)
+    //   })
   }
 
   return (
@@ -81,13 +91,19 @@ const Contact = () => {
           name="contact"
           method="post"
           data-netlify="true"
-          data-netlify-honeypot="bot-field"
+          data-netlify-honeypot="botfilter"
           onSubmit={e => handleSubmit(e)}
         >
           {/* You still need to add the hidden input with the form name to your JSX form */}
-          <input type="hidden" name="trash-talker-contacts" value="contact" />
+          <input
+            type="hidden"
+            name="botfilter"
+            value={botfilter}
+            onChange={e => setBotfilter(e.target.value)}
+          />
           <input
             type="text"
+            name="name"
             placeholder="Your Name"
             value={name}
             onChange={e => setName(e.target.value)}
@@ -95,6 +111,7 @@ const Contact = () => {
           />
           <input
             type="email"
+            name="email"
             placeholder="Your Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -102,6 +119,7 @@ const Contact = () => {
           />
           <input
             type="text"
+            name="subject"
             placeholder="Subject"
             value={subject}
             onChange={e => setSubject(e.target.value)}
@@ -109,6 +127,7 @@ const Contact = () => {
           />
           <textarea
             type="text"
+            name="message"
             placeholder="Message"
             value={message}
             onChange={e => setMessage(e.target.value)}
