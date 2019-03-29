@@ -31,6 +31,7 @@ const ContactForm = styled.form`
 
   input,
   textarea {
+    font-family: Work Sans, 'sans-serif';
     padding: 16px 8px;
     border: none;
     background: #dceaf4;

@@ -9,6 +9,7 @@ import BeatList from '../components/BeatList/'
 import LatestBeats from '../components/LatestBeats/'
 import LicensingOptions from '../components/LicensingOptions'
 import getValidBeats from '../utils/products.js'
+import NewsletterSignup from '../components/NewsletterSignup'
 
 const Title = styled.h1`
   font-family: Work Sans;
@@ -39,6 +40,12 @@ const BeatListContainer = styled(Container)`
   margin-top: 80px;
   background: #0d2b40;
   padding: 40px 40px 56px 40px;
+`
+
+const NewsletterContainer = styled(Container)`
+  background: #0d2b40;
+  padding: 40px 40px 56px 40px;
+  margin: 0 auto 80px auto;
 `
 
 const LicensingTitle = styled(Title)`
@@ -98,6 +105,12 @@ const IndexPage = props => {
         </GlitchedText>
         <LicensingOptions />
       </Container>
+      <NewsletterContainer>
+        <GlitchedText>
+          <Title>Never miss a beat!</Title>
+        </GlitchedText>
+        <NewsletterSignup />
+      </NewsletterContainer>
     </Layout>
   )
 }

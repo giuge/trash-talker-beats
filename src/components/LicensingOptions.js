@@ -17,7 +17,7 @@ const LicenseContainer = styled.div`
 
 const StyledLicense = styled.div`
   padding: 16px;
-  background: #dceaf4;
+  background: ${props => (props.popular ? '#F2F9FF' : '#dceaf4')};
   border-radius: 4px;
   text-align: center;
   color: #0a1723;
@@ -117,8 +117,8 @@ const Check = () => (
     <path
       d="M5 8.11111L7.625 12L11 5"
       stroke="white"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )

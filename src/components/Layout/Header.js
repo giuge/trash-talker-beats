@@ -150,8 +150,7 @@ const Header = ({ siteTitle }) => {
           <Menu>
             {/* <MenuItem>
               <Link to="/">Beats</Link>
-            </MenuItem>
-            */}
+            </MenuItem> */}
           </Menu>
           <CartLink items={itemsInCart}>
             <CartBadge>{itemsInCart}</CartBadge>
